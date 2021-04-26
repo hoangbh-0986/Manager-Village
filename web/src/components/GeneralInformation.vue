@@ -47,7 +47,7 @@
     </div>
   </div>
 </template>
-<style scoped>
+<style>
 .title-general {
   font-size: 24px;
   color: #2f3c44;
