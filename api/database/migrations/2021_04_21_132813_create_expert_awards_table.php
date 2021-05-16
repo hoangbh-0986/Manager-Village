@@ -15,7 +15,7 @@ class CreateExpertAwardsTable extends Migration
     {
         Schema::create('expert_awards', function (Blueprint $table) {
             $table->id();
-            $table->timestamps('year_achieved');
+            $table->dateTime('year_achieved');
             $table->integer('expert_id')->unsigned()->index();
             $table->integer('award_id')->unsigned()->index();
             $table->timestamps();
