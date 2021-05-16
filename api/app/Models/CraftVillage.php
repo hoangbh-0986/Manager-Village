@@ -9,6 +9,14 @@ class CraftVillage extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'phone',
+        'create_year',
+        'email',
+        'ward_id',
+    ];
+
     public function ward()
     {
         return $this->belongsTo('App\Models\Ward');

@@ -9,6 +9,12 @@ class Ward extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'phone',
+        'email',
+    ];
+
     public function craftVillages()
     {
         return $this->hasMany('App\Models\CraftVillage');
