@@ -17,8 +17,8 @@ class CreateHeirsTable extends Migration
             $table->id();
             $table->integer('expert_id')->unsigned()->index();
             $table->string('name');
-            $table->timestamps('date_of_birth');
-            $table->timestamps('year_job_transmission');
+            $table->dateTime('date_of_birth');
+            $table->dateTime('year_job_transmission');
             $table->timestamps();
         });
     }

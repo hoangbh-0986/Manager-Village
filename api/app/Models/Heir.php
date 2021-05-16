@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Heir extends Model
 {
     use HasFactory;
+
+    public function expert()
+    {
+        return $this->belongsTo('App\Models\Expert');
+    }
 }

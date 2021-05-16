@@ -17,8 +17,9 @@ class CreateCraftVillagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->smallInteger('phone');
-            $table->timestamps('create_year');
+            $table->dateTime('create_year');
             $table->string('email');
+            $table->integer('ward_id')->unsigned()->index();
             $table->timestamps();
         });
     }

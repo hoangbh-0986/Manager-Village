@@ -18,6 +18,9 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('content');
             $table->integer('author_id')->unsigned()->index();
+            $table->integer('craft_village_id')->nullable()->unsigned()->index();
+            $table->integer('job_id')->nullable()->unsigned()->index();
+            $table->integer('expert_id')->nullable()->unsigned()->index();
             $table->timestamps();
         });
     }

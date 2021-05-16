@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExpertController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,10 @@ Route::post('/tokens/create', function (Request $request) {
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users/auth', AuthController::class);
 });
+
+Route::get('/expert', [ExpertController::class, 'GetExpert']);
+Route::post('/expert', [ExpertController::class, 'CreateExpert']);
+Route::put('/expert', [ExpertController::class, 'UpdateExpert']);
+Route::get('/expert/{id}', [ExpertController::class, 'DetailExpert']);
+Route::put('/expert/{id}', [ExpertController::class, 'UpdateExpert']);
+Route::delete('/expert/{id}', [ExpertController::class, 'DeleteExpert']);

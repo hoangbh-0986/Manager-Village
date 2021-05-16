@@ -16,8 +16,8 @@ class CreateExpertsTable extends Migration
         Schema::create('experts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps('year_of_birth');
-            $table->timestamps('year_died');
+            $table->dateTime('year_of_birth');
+            $table->dateTime('year_died');
             $table->integer('craft_village_id')->unsigned()->index();
             $table->integer('job_id')->unsigned()->index();
             $table->timestamps();
