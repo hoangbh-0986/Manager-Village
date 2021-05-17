@@ -24,6 +24,10 @@
         <el-input v-model.number="form.phone" />
       </el-form-item>
 
+      <el-form-item label="Create Year" prop="phone">
+        <el-input v-model.number="form.create_year" />
+      </el-form-item>
+
       <el-form-item>
         <el-button type="primary" @click="submitForm"> Confirm </el-button>
         <el-button @click="resetForm()"> Reset </el-button>
@@ -59,6 +63,9 @@ export default {
         ],
         phone: [
           { required: true, message: "Please input a number", trigger: "blur" },
+        ],        
+        create_year: [
+          { required: true, message: "Please input a create year", trigger: "blur" },
         ],
       },
     };

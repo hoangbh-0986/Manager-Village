@@ -1,7 +1,7 @@
 <template>
   <DashBoard>
     <List
-      :jobs="jobs"
+      :wards="wards"
       @onDelete="onDelete"
       @onEdit="(item) => $refs.edit.open(item)"
       @openCreate="$refs.create.open()"
@@ -9,34 +9,34 @@
 
     <Pagination :total="total" />
 
-    <JobForm ref="create" title="Create new job" @save="create" />
-    <JobForm ref="edit" title="Edit ward" @save="onEdit" />
+    <WardForm ref="create" title="Create new ward" @save="create" />
+    <WardForm ref="edit" title="Edit ward" @save="onEdit" />
   </DashBoard>
 </template>
 
 <script>
-import { get, create, destroy, update } from "../../api/job";
+import { get, create, destroy, update } from "../../api/ward";
 import Pagination from "@/components/Pagination.vue";
-import List from "@/components/ListJob.vue";
-import JobForm from "@/components/JobForm.vue";
+import List from "@/components/ListWard.vue";
+import WardForm from "@/components/WardForm.vue";
 import DashBoard from "@/components/DashBoard.vue";
 
 export default {
   components: {
     Pagination,
     List,
-    JobForm,
+    WardForm,
     DashBoard,
   },
 
   data() {
     return {
-      jobs: null,
+      wards: null,
       total: 0,
     };
   },
   mounted() {
-    get().then((response) => (this.jobs = response.data.data));
+    get().then((response) => (this.wards = response.data.data));
   },
 
   methods: {
@@ -44,7 +44,7 @@ export default {
       try {
         await create(values);
         this.$message({
-          message: "Job is created!",
+          message: "Ward is created!",
           type: "success",
         });
       } catch (e) {
@@ -59,7 +59,7 @@ export default {
       try {
         await destroy(id);
         this.$message({
-          message: "Job is deleted!",
+          message: "Ward is deleted!",
           type: "success",
         });
       } catch (e) {
@@ -74,7 +74,7 @@ export default {
       try {
         await update(values.id, values);
         this.$message({
-          message: "Job is updated",
+          message: "ward is updated",
           type: "success",
         });
       } catch (e) {

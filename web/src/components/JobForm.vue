@@ -41,18 +41,17 @@ import _cloneDeep from "lodash/cloneDeep";
 
 const emptyState = () => ({
   name: "",
-  email: "",
-  phone: "",
+  year_create: "",
+  ancestor: "",
+  note: "",
 });
 
 export default {
-
   props: {
     title: String,
   },
 
   data() {
-
     return {
       form: emptyState(),
       show: false,
@@ -61,10 +60,18 @@ export default {
           { required: true, message: "Please input name", trigger: "blur" },
         ],
         year_create: [
-          { required: true, message: "Please input create year", trigger: "blur" },
+          {
+            required: true,
+            message: "Please input create year",
+            trigger: "blur",
+          },
         ],
         ancestor: [
-          { required: true, message: "Please input a ancestor", trigger: "blur" },
+          {
+            required: true,
+            message: "Please input a ancestor",
+            trigger: "blur",
+          },
         ],
         note: [
           { required: true, message: "Please input a note", trigger: "blur" },

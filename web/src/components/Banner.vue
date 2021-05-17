@@ -2,7 +2,9 @@
   <div id="setion-hero" class="w-100 h-40 bg-repeat flex justify-center">
     <div class="titler-header flex justify-center items-center">
       <div class="logo m-5">
-        <img src="../assets/images/banner1.png" class="w-16 h-16" alt="" />
+        <router-link to="/">
+          <img src="../assets/images/banner1.png" class="w-16 h-16" alt="" />
+        </router-link>
       </div>
       <div class="slogan m-5">
         <h1>

@@ -2,11 +2,10 @@
   <header class="px-5 py-1 text-white bg-blue-400">
     <nav class="container flex items-center justify-between mx-auto">
       <div v-if="authUser" class="flex items-center space-x-5">
-        <router-link to="/dashboard">
+        <router-link to="/">
           <HomeIcon class="w-6 h-6 text-white" />
-          <span class="sr-only">Dashboard</span>
         </router-link>
-        <router-link to="/users" v-if="isAdmin">Users</router-link>
+        <router-link to="/admin/craft-village" v-if="isAdmin">Admin-DashBoard</router-link>
       </div>
       <router-link to="/" v-else>
         <HomeIcon class="w-6 h-6 text-white" />
@@ -20,7 +19,8 @@
           <el-submenu index="2">
             <template slot="title" class="css-hihi">Nghề truyền thống</template>
             <el-menu-item
-              v-for="item in carftVillages" :key="item.id"
+              v-for="item in jobs.slice(0, 7)"
+              :key="item.id"
               :index="item.id"
             >
               {{ item.name }}
@@ -31,7 +31,8 @@
               >Làng nghề truyền thống</template
             >
             <el-menu-item
-              v-for="item in carftVillages" :key="item.id"
+              v-for="item in carftVillages"
+              :key="item.id"
               :index="item.id"
             >
               {{ item.name }}
@@ -40,7 +41,8 @@
           <el-submenu index="4">
             <template slot="title">Nghệ Nhân</template>
             <el-menu-item
-              v-for="item in experts.slice(0,5)" :key="item.id"
+              v-for="item in experts.slice(0, 5)"
+              :key="item.id"
               :index="item.id"
             >
               {{ item.name }}
@@ -48,20 +50,21 @@
           </el-submenu>
           <el-submenu index="5">
             <template slot="title">Sản phẩm</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
+            <el-menu-item index="2-1">Sản phẩm làng nghề</el-menu-item>
+            <el-menu-item index="2-2">Sản Phẩm khác</el-menu-item>
           </el-submenu>
           <el-submenu index="6">
             <template slot="title">Hộ sản xuất</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
+            <el-menu-item index="2-1">Hộ sản xuất nhỏ</el-menu-item>
+            <el-menu-item index="2-2">Cơ sở sản xuất lớn</el-menu-item>
+            <el-menu-item index="2-3">Hợp tác xã</el-menu-item>
           </el-submenu>
-          <el-submenu index="7">
+           <router-link to="/contact">
+          <el-submenu index="7" >
             <template slot="title">Liên Hệ</template>
           </el-submenu>
-          <div class="line"></div>
+          </router-link>
+          <!-- <div class="line"></div> -->
         </el-menu>
       </div>
       <div class="inline-flex items-center space-x-5" v-if="authUser">
