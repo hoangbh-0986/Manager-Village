@@ -16,14 +16,16 @@ class JobController extends Controller
     public function CreateJob(Request $request) {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|string',
+            'year_create' => 'required',
+            'ancestor' => 'required',
+            'note' => 'required',
         ]);
 
         $job = new Job([
             'name' => $request->get('name'),
-            'phone' => $request->get('phone'),
-            'email' => $request->get('email'),
+            'year_create' => $request->get('year_create'),
+            'ancestor' => $request->get('ancestor'),
+            'note' => $request->get('note'),
         ]);
         $job->save();
         return  response()->json([
@@ -42,25 +44,28 @@ class JobController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email|string',
+            'year_create' => 'required',
+            'ancestor' => 'required',
+            'note' => 'required',
         ]);
 
-        $ward = Ward::find($id);
-        $ward->name = $request->get('name');
-        $ward->phone = $request->get('phone');
-        $ward->email = $request->get('email');
-        $ward->save();
 
-        return $ward;
+        $job = Job::find($id);
+        $job->name = $request->get('name');
+        $job->year_create = $request->get('year_create');
+        $job->ancestor = $request->get('ancestor');
+        $job->note = $request->get('note');
+        $job->save();
+
+        return $job;
     }
 
     public function DeleteJob($id)
     {
-        $ward = Ward::find($id);
+        $job = Job::find($id);
 
         return response()->json([
-            'success' => (bool) ($ward->delete()),
+            'success' => (bool) ($job->delete()),
         ]);
     }
 }

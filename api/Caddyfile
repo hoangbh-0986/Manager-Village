@@ -1,5 +1,5 @@
 http://api.app.local {
-    reverse_proxy localhost:8000
+    reverse_proxy * localhost:8000
 }
 
 http://app.local {
