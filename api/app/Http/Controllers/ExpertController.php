@@ -17,7 +17,6 @@ class ExpertController extends Controller
         $request->validate([
             'name' => 'required',
             'year_of_birth' => 'required',
-            'year_died' => 'required',
             'craft_village_id' => 'required',
             'job_id' => 'required',
         ]);
@@ -47,7 +46,6 @@ class ExpertController extends Controller
         $request->validate([
             'name' => 'required',
             'year_of_birth' => 'required',
-            'year_died' => 'required',
             'craft_village_id' => 'required',
             'job_id' => 'required',
         ]);

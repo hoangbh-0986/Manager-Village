@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExpertController;
+use App\Http\Controllers\WardController;
+use App\Http\Controllers\CraftVillageController;
+use App\Http\Controllers\JobController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +36,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::get('/expert', [ExpertController::class, 'GetExpert']);
 Route::post('/expert', [ExpertController::class, 'CreateExpert']);
-Route::put('/expert', [ExpertController::class, 'UpdateExpert']);
 Route::get('/expert/{id}', [ExpertController::class, 'DetailExpert']);
 Route::put('/expert/{id}', [ExpertController::class, 'UpdateExpert']);
 Route::delete('/expert/{id}', [ExpertController::class, 'DeleteExpert']);
+
+Route::get('/ward', [WardController::class, 'GetWard']);
+Route::post('/ward', [WardController::class, 'CreateWard']);
+Route::get('/ward/{id}', [WardController::class, 'DetailWard']);
+Route::put('/ward/{id}', [WardController::class, 'UpdateWard']);
+Route::delete('/ward/{id}', [WardController::class, 'DeleteWard']);
+
+Route::get('/craft_village', [CraftVillageController::class, 'GetCraftVillage']);
+Route::post('/craft_village', [CraftVillageController::class, 'CreateCraftVillage']);
+Route::get('/craft_village/{id}', [CraftVillageController::class, 'DetailCraftVillage']);
+Route::put('/craft_village/{id}', [CraftVillageController::class, 'UpdateCraftVillage']);
+Route::delete('/craft_village/{id}', [CraftVillageController::class, 'DeleteCraftVillage']);
+
+Route::get('/job', [JobController::class, 'GetJob']);
+Route::post('/job', [JobController::class, 'CreateJob']);
+Route::get('/job/{id}', [JobController::class, 'DetailJob']);
+Route::put('/job/{id}', [JobController::class, 'UpdateJob']);
+Route::delete('/job/{id}', [JobController::class, 'DeleteJob']);
