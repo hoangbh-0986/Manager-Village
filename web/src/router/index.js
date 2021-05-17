@@ -18,9 +18,21 @@ const routes = [
   {
     path: "/dashboard",
     name: "dashboard",
-    meta: { middleware: [auth] },
+    // meta: { middleware: [auth] },
     component: () =>
       import(/* webpackChunkName: "dashboard" */ "../views/Dashboard"),
+  },
+  {
+    path: "/admin/ward",
+    name: "admin",
+    // meta: { middleware: [auth] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/Admin"),
+  },
+  {
+    path: "/admin/job",
+    name: "admin-Job",
+    // meta: { middleware: [auth] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/Job"),
   },
   {
     path: "/user",

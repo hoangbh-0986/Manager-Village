@@ -5,7 +5,11 @@
       <img src="../assets/images/title.png" />
       <div class="flex my-10">
         <div class="mr-2 my-5">
-          <img src="../assets/images/image4.jpeg" alt="" class="image-big mb-5" />
+          <img
+            src="../assets/images/image4.jpeg"
+            alt=""
+            class="image-big mb-5"
+          />
           <a class="title-item1">
             Thường Tín phát huy truyền thống “Uống nước nhớ nguồn”
           </a>
@@ -85,8 +89,8 @@
   max-height: 110px;
 }
 .title-item1 {
-    text-decoration: none;
-    color: #212121;
-    font-weight: bold;
+  text-decoration: none;
+  color: #212121;
+  font-weight: bold;
 }
 </style>
