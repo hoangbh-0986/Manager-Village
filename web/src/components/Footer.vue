@@ -11,7 +11,7 @@
       <h2>TRANG THÔNG TIN ĐIỆN TỬ VĂN HÓA - DU LỊCH - LÀNG NGHỀ HÀ NỘI</h2>
       <p>
         Chịu trách nhiệm nội dung: Ban vận động Hiệp hội văn hóa du lịch làng
-        nghề huyện Hà Nội
+        nghề  Hà Nội
       </p>
       <p>Người đại diện: Bùi Huy Hoàng</p>
       <p>Sdt: 0964250559</p>

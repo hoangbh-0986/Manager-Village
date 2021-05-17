@@ -16,12 +16,12 @@
         <el-input v-model="form.name" />
       </el-form-item>
 
-      <el-form-item label="Email" prop="email">
-        <el-input v-model="form.email" />
+      <el-form-item label="Year of Birth" prop="year_create">
+        <el-input v-model="form.year_of_birth" />
       </el-form-item>
 
-      <el-form-item label="Phone Number" prop="phone">
-        <el-input v-model.number="form.phone" />
+      <el-form-item label="Year Died" prop="ancestor">
+        <el-input v-model.number="form.year_died" />
       </el-form-item>
 
       <el-form-item>
@@ -37,8 +37,9 @@ import _cloneDeep from "lodash/cloneDeep";
 
 const emptyState = () => ({
   name: "",
-  email: "",
-  phone: "",
+  year_create: "",
+  ancestor: "",
+  note: "",
 });
 
 export default {
@@ -54,11 +55,12 @@ export default {
         name: [
           { required: true, message: "Please input name", trigger: "blur" },
         ],
-        email: [
-          { required: true, message: "Please input email", trigger: "blur" },
-        ],
-        phone: [
-          { required: true, message: "Please input a number", trigger: "blur" },
+        year_of_birth: [
+          {
+            required: true,
+            message: "Please input create year",
+            trigger: "blur",
+          },
         ],
       },
     };

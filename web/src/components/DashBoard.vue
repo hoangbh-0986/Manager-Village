@@ -3,7 +3,7 @@
     <site-header class="site-header" />
     <div class="layout">
       <site-sidebar class="site-sidebar" />
-      <nuxt class="site-content" />
+      <slot> </slot>
     </div>
   </div>
 </template>

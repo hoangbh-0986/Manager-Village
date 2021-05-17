@@ -1,11 +1,11 @@
 <template>
   <aside class="mr-2">
     <router-link
-      to="/"
+      to="/admin/craft-village"
       class="aside-btn"
       :class="{ active: $route.name == 'index' }"
     >
-      <div>Dashboard</div>
+      <div>Craft Village</div>
     </router-link>
     <router-link
       to="/admin/ward"
@@ -27,6 +27,13 @@
       :class="{ active: $route.name == 'posts' }"
     >
       <div>Posts</div>
+    </router-link>
+    <router-link
+      to="/admin/expert"
+      class="aside-btn"
+      :class="{ active: $route.name == 'posts' }"
+    >
+      <div>Expert</div>
     </router-link>
   </aside>
 </template>

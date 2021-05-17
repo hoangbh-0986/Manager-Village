@@ -1,7 +1,7 @@
 <template>
   <DashBoard>
     <List
-      :jobs="jobs"
+      :craftVillages="craftVillages"
       @onDelete="onDelete"
       @onEdit="(item) => $refs.edit.open(item)"
       @openCreate="$refs.create.open()"
@@ -9,34 +9,38 @@
 
     <Pagination :total="total" />
 
-    <JobForm ref="create" title="Create new job" @save="create" />
-    <JobForm ref="edit" title="Edit ward" @save="onEdit" />
+    <CraftVillageForm
+      ref="create"
+      title="Create new Craft Village"
+      @save="create"
+    />
+    <CraftVillageForm ref="edit" title="Edit Craft Village" @save="onEdit" />
   </DashBoard>
 </template>
 
 <script>
-import { get, create, destroy, update } from "../../api/job";
+import { get, create, destroy, update } from "../../api/craftVillage";
 import Pagination from "@/components/Pagination.vue";
-import List from "@/components/ListJob.vue";
-import JobForm from "@/components/JobForm.vue";
+import List from "@/components/CraftVillage.vue";
+import CraftVillageForm from "@/components/CraftVillageForm.vue";
 import DashBoard from "@/components/DashBoard.vue";
 
 export default {
   components: {
     Pagination,
     List,
-    JobForm,
+    CraftVillageForm,
     DashBoard,
   },
 
   data() {
     return {
-      jobs: null,
+      craftVillages: [],
       total: 0,
     };
   },
   mounted() {
-    get().then((response) => (this.jobs = response.data.data));
+    get().then((response) => (this.craftVillages = response.data.craftVillage));
   },
 
   methods: {
@@ -44,7 +48,7 @@ export default {
       try {
         await create(values);
         this.$message({
-          message: "Job is created!",
+          message: "Craft Villages is created!",
           type: "success",
         });
       } catch (e) {
@@ -59,7 +63,7 @@ export default {
       try {
         await destroy(id);
         this.$message({
-          message: "Job is deleted!",
+          message: "Craft Villages is deleted!",
           type: "success",
         });
       } catch (e) {
@@ -74,7 +78,7 @@ export default {
       try {
         await update(values.id, values);
         this.$message({
-          message: "Job is updated",
+          message: "Craft Villages is updated",
           type: "success",
         });
       } catch (e) {

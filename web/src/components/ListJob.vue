@@ -8,25 +8,30 @@
         Create new
       </el-button>
     </div>
-  <el-table :data="jobs" style="width: 100%">
-    <el-table-column prop="id" lable="#" sortable />
-    <el-table-column label="Note" width="200" prop="note"> </el-table-column>
-    <el-table-column label="Name" prop="name" width="180"> </el-table-column>
-    <el-table-column label="Year create" prop="year_create"> </el-table-column>
-    <el-table-column label="Ancestor" prop="ancestor"> </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="Actions"
-      align="center"
-      min-width="150"
-    >
-      <template slot-scope="scope">
-        <el-button icon="el-icon-view" circle />
-        <el-button icon="el-icon-edit" circle @click="onEdit(scope.row)" />
-        <el-button type="danger" icon="el-icon-delete" circle @click="onDelete(scope.row.id)" />
-      </template>
-    </el-table-column>
-  </el-table>
+    <el-table :data="jobs" style="width: 100%">
+      <el-table-column prop="id" lable="#" sortable />
+      <el-table-column label="Note" width="200" prop="note"> </el-table-column>
+      <el-table-column label="Name" prop="name" width="180"> </el-table-column>
+      <el-table-column label="Year create" prop="year_create">
+      </el-table-column>
+      <el-table-column label="Ancestor" prop="ancestor"> </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="Actions"
+        align="center"
+        min-width="150"
+      >
+        <template slot-scope="scope">
+          <el-button icon="el-icon-edit" circle @click="onEdit(scope.row)" />
+          <el-button
+            type="danger"
+            icon="el-icon-delete"
+            circle
+            @click="onDelete(scope.row.id)"
+          />
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -40,23 +45,25 @@ export default {
   },
 
   methods: {
-    onDelete (id) {
-      this.$confirm('Delete this job ?', {
-        confirmButtonText: 'Delete',
-        cancelButtonText: 'cancel',
-        type: 'warning'
-      }).then(() => {
-        return this.$emit('onDelete', id)
-      }). catch(() => {})
+    onDelete(id) {
+      this.$confirm("Delete this job ?", {
+        confirmButtonText: "Delete",
+        cancelButtonText: "cancel",
+        type: "warning",
+      })
+        .then(() => {
+          return this.$emit("onDelete", id);
+        })
+        .catch(() => {});
     },
 
-    onEdit (item) {
-      return this.$emit('onEdit', item)
+    onEdit(item) {
+      return this.$emit("onEdit", item);
     },
 
-    open () {
-      return this.$emit('openCreate')
+    open() {
+      return this.$emit("openCreate");
     },
-  }
+  },
 };
 </script>

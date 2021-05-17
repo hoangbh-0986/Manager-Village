@@ -8,12 +8,12 @@
         Create new
       </el-button>
     </div>
-    <el-table :data="wards" style="width: 100%">
+    <el-table :data="craftVillages" style="width: 100%">
       <el-table-column prop="id" lable="#" sortable />
-      <el-table-column label="Email" width="250" prop="email">
+      <el-table-column label="Name" width="180" prop="name"> </el-table-column>
+      <el-table-column label="Phone" prop="phone" width="180"> </el-table-column>
+      <el-table-column label="Year create" prop="create_year">
       </el-table-column>
-      <el-table-column label="Name" prop="name" width="180"> </el-table-column>
-      <el-table-column label="Phone" prop="phone"> </el-table-column>
       <el-table-column
         fixed="right"
         label="Actions"
@@ -37,7 +37,7 @@
 <script>
 export default {
   props: {
-    wards: {
+    craftVillages: {
       type: Array,
       required: true,
     },
@@ -45,7 +45,7 @@ export default {
 
   methods: {
     onDelete(id) {
-      this.$confirm("Delete this ward ?", {
+      this.$confirm("Delete this Craft Villages ?", {
         confirmButtonText: "Delete",
         cancelButtonText: "cancel",
         type: "warning",
