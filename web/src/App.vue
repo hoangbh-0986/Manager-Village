@@ -1,25 +1,19 @@
 <template>
   <div id="app">
-    <Banner />
-    <Header />
     <main class="container mx-auto">
       <router-view />
     </main>
-   
+
     <Footer />
   </div>
 </template>
 
 <script>
-import Banner from "@/components/Banner.vue";
-import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "app",
   components: {
-    Banner,
-    Header,
     Footer,
   },
 };

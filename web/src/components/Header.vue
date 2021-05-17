@@ -16,27 +16,35 @@
           :default-active="activeIndex"
           class="el-menu-demo flex justify-center"
           mode="horizontal"
-          @select="handleSelect"
         >
           <el-submenu index="2">
-            <template slot="title" class="css-hihi">Giới Thiệu</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
+            <template slot="title" class="css-hihi">Nghề truyền thống</template>
+            <el-menu-item
+              v-for="item in carftVillages" :key="item.id"
+              :index="item.id"
+            >
+              {{ item.name }}
+            </el-menu-item>
           </el-submenu>
           <el-submenu index="3">
             <template slot="title" class="capitalize"
               >Làng nghề truyền thống</template
             >
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
+            <el-menu-item
+              v-for="item in carftVillages" :key="item.id"
+              :index="item.id"
+            >
+              {{ item.name }}
+            </el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">Nghệ Nhân</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
+            <el-menu-item
+              v-for="item in experts.slice(0,5)" :key="item.id"
+              :index="item.id"
+            >
+              {{ item.name }}
+            </el-menu-item>
           </el-submenu>
           <el-submenu index="5">
             <template slot="title">Sản phẩm</template>
@@ -52,9 +60,6 @@
           </el-submenu>
           <el-submenu index="7">
             <template slot="title">Liên Hệ</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
           </el-submenu>
           <div class="line"></div>
         </el-menu>
@@ -76,6 +81,9 @@
 </template>
 
 <script>
+import { get } from "../../api/craftVillage";
+import { get as getJob } from "../../api/job";
+import { get as getExpert } from "../../api/expert";
 import { mapGetters } from "vuex";
 import Logout from "@/components/Logout";
 import HomeIcon from "@/components/icons/HomeIcon";
@@ -87,8 +95,18 @@ export default {
     return {
       activeIndex: "1",
       activeIndex2: "1",
+      carftVillages: [],
+      jobs: [],
+      experts: [],
     };
   },
+
+  mounted() {
+    get().then((response) => (this.carftVillages = response.data.craftVillage));
+    getJob().then((response) => (this.jobs = response.data.data));
+    getExpert().then((response) => (this.experts = response.data.data));
+  },
+
   components: {
     Logout,
     HomeIcon,

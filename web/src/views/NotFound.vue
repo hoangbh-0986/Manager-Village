@@ -1,21 +1,33 @@
 <template>
-  <div class="max-w-lg p-5 m-auto">
-    <article class="p-5">
-      <h1
-        class="mb-2 text-6xl font-bold text-transparent bg-gradient-to-r bg-clip-text from-blue-500 to-green-500"
-      >
-        4Oh4
-      </h1>
-      <p class="font-bold">
-        The page you're looking for is not here.
-        <router-link to="/dashboard" class="base-link">Back home</router-link>.
-      </p>
-    </article>
+  <div>
+    <Banner />
+    <Header />
+    <div class="max-w-lg p-5 m-auto">
+      <article class="p-5">
+        <h1
+          class="mb-2 text-6xl font-bold text-transparent bg-gradient-to-r bg-clip-text from-blue-500 to-green-500"
+        >
+          4Oh4
+        </h1>
+        <p class="font-bold">
+          The page you're looking for is not here.
+          <router-link to="/dashboard" class="base-link">Back home</router-link
+          >.
+        </p>
+      </article>
+    </div>
   </div>
 </template>
 
 <script>
+import Banner from "@/components/Banner.vue";
+import Header from "@/components/Header.vue";
+
 export default {
   name: "NotFound",
+  components: {
+    Banner,
+    Header,
+  },
 };
 </script>
