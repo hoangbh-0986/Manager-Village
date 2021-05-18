@@ -43,6 +43,7 @@ export default {
     async create(values) {
       try {
         await create(values);
+        await get().then((response) => (this.experts = response.data.data));
         this.$message({
           message: "Expert is created!",
           type: "success",
@@ -58,6 +59,7 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
+        await get().then((response) => (this.experts = response.data.data));
         this.$message({
           message: "Expert is deleted!",
           type: "success",
@@ -73,6 +75,7 @@ export default {
     async onEdit(values) {
       try {
         await update(values.id, values);
+        await get().then((response) => (this.experts = response.data.data));
         this.$message({
           message: "Expert is updated",
           type: "success",
