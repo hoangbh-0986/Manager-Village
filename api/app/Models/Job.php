@@ -9,6 +9,13 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'year_create',
+        'ancestor',
+        'note',
+    ];
+
     public function ward()
     {
         $this->belongsto('App\Models\Ward');
