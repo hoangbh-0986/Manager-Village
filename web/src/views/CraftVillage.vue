@@ -47,6 +47,7 @@ export default {
     async create(values) {
       try {
         await create(values);
+        await get().then((response) => (this.craftVillages = response.data.craftVillage));
         this.$message({
           message: "Craft Villages is created!",
           type: "success",
@@ -62,6 +63,7 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
+        await get().then((response) => (this.craftVillages = response.data.craftVillage));
         this.$message({
           message: "Craft Villages is deleted!",
           type: "success",
@@ -77,6 +79,7 @@ export default {
     async onEdit(values) {
       try {
         await update(values.id, values);
+        await get().then((response) => (this.craftVillages = response.data.craftVillage));
         this.$message({
           message: "Craft Villages is updated",
           type: "success",

@@ -24,8 +24,12 @@
         <el-input v-model.number="form.phone" />
       </el-form-item>
 
-      <el-form-item label="Create Year" prop="phone">
-        <el-input v-model.number="form.create_year" />
+      <el-form-item label="Create Year" prop="create_year">
+        <el-input v-model="form.create_year" />
+      </el-form-item>
+
+       <el-form-item label="Ward ID" prop="ward_id">
+        <el-input v-model.number="form.ward_id" />
       </el-form-item>
 
       <el-form-item>

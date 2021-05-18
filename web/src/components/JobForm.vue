@@ -20,6 +20,17 @@
         <el-input v-model="form.year_create" />
       </el-form-item>
 
+      <!-- <el-form-item label="Year Create" prop="year_create" reqired>
+        <el-date-picker
+          v-model="form.year_create"
+          type="datetime"
+          :clearable="false"
+          format="yyyy-MM-dd HH:mm:ss"
+          placeholder="Select year creat"
+        >
+        </el-date-picker>
+      </el-form-item> -->
+
       <el-form-item label="Ancestor" prop="ancestor">
         <el-input v-model.number="form.ancestor" />
       </el-form-item>
