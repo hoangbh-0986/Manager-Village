@@ -12,7 +12,7 @@
       label-width="150px"
       label-position="left"
     >
-      <el-form-item label="Name" prop="name">
+      <el-form-item label="Tên" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
 
@@ -20,20 +20,35 @@
         <el-input v-model="form.email" />
       </el-form-item>
 
-      <el-form-item label="Phone Number" prop="phone">
+      <el-form-item label="Số điện thoại" prop="phone">
         <el-input v-model.number="form.phone" />
       </el-form-item>
 
-      <el-form-item label="Create Year" prop="create_year">
-        <el-input v-model="form.create_year" />
+      <el-form-item label="Năm hình thành" prop="create_year" reqired>
+        <el-date-picker
+          v-model="form.create_year"
+          type="datetime"
+          :clearable="false"
+          format="yyyy/MM/dd"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          placeholder="Select year creat"
+        >
+        </el-date-picker>
       </el-form-item>
 
-       <el-form-item label="Ward ID" prop="ward_id">
-        <el-input v-model.number="form.ward_id" />
+       <el-form-item label="Xã phường" prop="ward_id">
+          <el-select v-model="form.ward_id" placeholder="Vui lòng chọn 1 xã phường">
+            <el-option 
+              v-for="item in wards"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm"> Confirm </el-button>
+        <el-button type="primary" @click="submitForm"> Tạo </el-button>
         <el-button @click="resetForm()"> Reset </el-button>
       </el-form-item>
     </el-form>
@@ -42,7 +57,7 @@
 
 <script>
 import _cloneDeep from "lodash/cloneDeep";
-
+import { get } from "../api/ward";
 const emptyState = () => ({
   name: "",
   email: "",
@@ -54,22 +69,27 @@ export default {
     title: String,
   },
 
+  mounted() {
+    get().then((response) => (this.wards = response.data.data));
+  },
+
   data() {
     return {
       form: emptyState(),
       show: false,
+      wards: null,
       rules: {
         name: [
-          { required: true, message: "Please input name", trigger: "blur" },
+          { required: true, message: "Tên là bắt buộc", trigger: "blur" },
         ],
         email: [
-          { required: true, message: "Please input email", trigger: "blur" },
+          { required: true, message: "Email là bắt buộc", trigger: "blur" },
         ],
         phone: [
-          { required: true, message: "Please input a number", trigger: "blur" },
+          { required: true, message: "Số điện thoại là bắt buộc", trigger: "blur" },
         ],        
         create_year: [
-          { required: true, message: "Please input a create year", trigger: "blur" },
+          { required: true, message: "Năm hình thành là bắt buộc", trigger: "blur" },
         ],
       },
     };

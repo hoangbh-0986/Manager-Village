@@ -1,56 +1,53 @@
 <template>
   <DashBoard>
     <List
-      :jobs="jobs"
+      :posts="posts"
       @onDelete="onDelete"
       @onEdit="(item) => $refs.edit.open(item)"
-      @openCreate="$refs.create.open()"
     />
-
+    <PostForm ref="create" title="Create new job" @save="create" />
+    <PostForm ref="edit" title="Edit ward" @save="onEdit" />
     <Pagination :total="total" />
-
-    <JobForm ref="create" title="Thêm mới nghề truyền thống" @save="create" />
-    <JobForm ref="edit" title="Cập nhật nghề truyền thống" @save="onEdit" />
   </DashBoard>
 </template>
 
 <script>
-import { get, create, destroy, update } from "../api/job";
+import { get, create, destroy, update } from "../api/post";
 import Pagination from "@/components/Pagination.vue";
-import List from "@/components/ListJob.vue";
-import JobForm from "@/components/JobForm.vue";
+import List from "@/components/ListPosts.vue";
 import DashBoard from "@/components/DashBoard.vue";
+import PostForm from "@/components/PostForm.vue"
 
 export default {
   components: {
     Pagination,
     List,
-    JobForm,
     DashBoard,
+    PostForm,
   },
 
   data() {
     return {
-      jobs: null,
+      posts: null,
       total: 0,
     };
   },
   mounted() {
-    get().then((response) => (this.jobs = response.data.data));
+    get().then((response) => (this.posts = response.data.post, this.total = response.data.post.lenght));
   },
 
   methods: {
     async create(values) {
       try {
         await create(values);
-        await get().then((response) => (this.jobs = response.data.data, this.total = response.data.total));
+        await get().then((response) => (this.posts = response.data.post));
         this.$message({
-          message: "Thêm mới nghề thành công",
+          message: "Expert is created!",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Đã có lỗi xảy ra",
+          message: "Something goes wrong",
           type: "error",
         });
       }
@@ -59,14 +56,14 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
-        await get().then((response) => (this.jobs = response.data.data));
+        await get().then((response) => (this.posts = response.data.post));
         this.$message({
-          message: "Đã xóa nghề ",
+          message: "Expert is deleted!",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Đã có lỗi xảy ra",
+          message: "Something goes wrong",
           type: "error",
         });
       }
@@ -75,14 +72,14 @@ export default {
     async onEdit(values) {
       try {
         await update(values.id, values);
-        await get().then((response) => (this.jobs = response.data.data));
+        await get().then((response) => (this.posts = response.data.post));
         this.$message({
-          message: "Đã cập nhật nghề",
+          message: "Expert is updated",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Đã có lỗi xảy ra",
+          message: "Something goes wrong",
           type: "error",
         });
       }

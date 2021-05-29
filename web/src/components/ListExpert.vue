@@ -5,18 +5,18 @@
         class="px-4 py-2 bg-blue-400 text-white rounded hover:bg-blue-500 active:bg-blue-600"
         @click="open"
       >
-        Create new
+        Tạo mới
       </el-button>
     </div>
     <el-table :data="experts" style="width: 100%">
       <el-table-column prop="id" lable="#" sortable />
-      <el-table-column label="Name" prop="name" width="180"> </el-table-column>
-      <el-table-column label="Year of Birth" prop="year_of_birth" />
-      <el-table-column label="Year Died" prop="year_died">
+      <el-table-column label="Tên" prop="name" width="180"> </el-table-column>
+      <el-table-column label="Năm sinh" prop="year_of_birth" />
+      <el-table-column label="Năm mất" prop="year_died">
       </el-table-column>
       <el-table-column
         fixed="right"
-        label="Actions"
+        label="Hành Động"
         align="center"
         min-width="150"
       >
@@ -45,8 +45,8 @@ export default {
 
   methods: {
     onDelete(id) {
-      this.$confirm("Delete this expert ?", {
-        confirmButtonText: "Delete",
+      this.$confirm("Xóa nghệ nhân này?", {
+        confirmButtonText: "Xóa",
         cancelButtonText: "cancel",
         type: "warning",
       })

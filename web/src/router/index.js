@@ -17,33 +17,38 @@ const routes = [
   },
   {
     path: "/admin/ward",
-    name: "admin",
-    meta: { middleware: [auth] },
+    name: "ward",
+    meta: { middleware: [auth, admin] },
     component: () => import(/* webpackChunkName: "abcss" */ "../views/Ward"),
   },
   {
+    path: "/admin/detail-post",
+    name: "detail",
+    meta: { middleware: [auth, admin] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/DatailPost"),
+  },
+  {
     path: "/admin/craft-village",
-    name: "admin",
-    meta: { middleware: [auth] },
+    name: "craft-village",
+    meta: { middleware: [auth, admin] },
     component: () => import(/* webpackChunkName: "abcss" */ "../views/CraftVillage"),
   },
   {
     path: "/admin/expert",
-    name: "admin",
-    meta: { middleware: [auth] },
+    name: "expert",
+    meta: { middleware: [auth, admin] },
     component: () => import(/* webpackChunkName: "abcss" */ "../views/Expert"),
   },
   {
-    path: "/admin/create-post",
-    name: "admin",
-    // meta: { middleware: [auth] },
-    component: () =>
-      import(/* webpackChunkName: "abcss" */ "../views/CreatePost"),
+    path: "/admin/posts",
+    name: "posts",
+    meta: { middleware: [auth, admin] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/Posts"),
   },
   {
     path: "/admin/job",
-    name: "admin-Job",
-    meta: { middleware: [auth] },
+    name: "job",
+    meta: { middleware: [auth, admin] },
     component: () => import(/* webpackChunkName: "abcss" */ "../views/Job"),
   },
   {
@@ -91,6 +96,11 @@ const routes = [
     path: "/contact",
     name: "conctact",
     component: () => import(/* webpackChunkName: "home" */ "../views/Contact"),
+  },
+  {
+    path: "/admin/post/create",
+    name: "view-postsd",
+    component: () => import(/* webpackChunkName: "home" */ "../views/CreatePost"),
   },
   {
     path: "/:catchAll(.*)",

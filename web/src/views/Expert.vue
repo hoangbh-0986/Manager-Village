@@ -9,17 +9,21 @@
 
     <Pagination :total="total" />
 
-    <ExpertForm ref="create" title="Create new expert" @save="create" />
-    <ExpertForm ref="edit" title="Edit ward" @save="onEdit" />
+    <ExpertForm ref="create" title="Thêm mới nghệ nhân" @save="create" />
+    <ExpertForm ref="edit" title="Cập nhật thông tin nghệ nhân" @save="onEdit" />
+
+
+    <VueSimolemde />
   </DashBoard>
 </template>
 
 <script>
-import { get, create, destroy, update } from "../../api/expert";
+import { get, create, destroy, update } from "../api/expert";
 import Pagination from "@/components/Pagination.vue";
 import List from "@/components/ListExpert.vue";
 import ExpertForm from "@/components/ExpertForm.vue";
 import DashBoard from "@/components/DashBoard.vue";
+import VueSimolemde from "@/components/VueSimplemde.vue"
 
 export default {
   components: {
@@ -27,6 +31,7 @@ export default {
     List,
     ExpertForm,
     DashBoard,
+    VueSimolemde,
   },
 
   data() {
@@ -45,12 +50,12 @@ export default {
         await create(values);
         await get().then((response) => (this.experts = response.data.data));
         this.$message({
-          message: "Expert is created!",
+          message: "Đã thêm thành công nghệ nhân",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Có lỗi xảy ra",
           type: "error",
         });
       }
@@ -59,14 +64,14 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
-        await get().then((response) => (this.experts = response.data.data));
+        await get().then((response) => (this.experts = response.data.data, this.total = response.data.total));
         this.$message({
-          message: "Expert is deleted!",
+          message: "Đã xóa nghệ nhân",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Có lỗi xảy ra",
           type: "error",
         });
       }
@@ -77,12 +82,12 @@ export default {
         await update(values.id, values);
         await get().then((response) => (this.experts = response.data.data));
         this.$message({
-          message: "Expert is updated",
+          message: "Cập nhật thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Có lỗi xảy ra",
           type: "error",
         });
       }

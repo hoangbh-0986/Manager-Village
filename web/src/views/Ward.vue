@@ -9,13 +9,13 @@
 
     <Pagination :total="total" />
 
-    <WardForm ref="create" title="Create new ward" @save="create" />
-    <WardForm ref="edit" title="Edit ward" @save="onEdit" />
+    <WardForm ref="create" title="Tạo mới xã phường" @save="create" />
+    <WardForm ref="edit" title="Cập nhật xã phường" @save="onEdit" />
   </DashBoard>
 </template>
 
 <script>
-import { get, create, destroy, update } from "../../api/ward";
+import { get, create, destroy, update } from "../api/ward";
 import Pagination from "@/components/Pagination.vue";
 import List from "@/components/ListWard.vue";
 import WardForm from "@/components/WardForm.vue";
@@ -36,7 +36,7 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.wards = response.data.data));
+    get().then((response) => (this.wards = response.data.data, this.total = response.data.total));
   },
 
   methods: {
@@ -45,12 +45,12 @@ export default {
         await create(values);
         await get().then((response) => (this.wards = response.data.data));
         this.$message({
-          message: "Ward is created!",
+          message: "Thêm mới thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
@@ -61,12 +61,12 @@ export default {
         await destroy(id);
         await get().then((response) => (this.wards = response.data.data));
         this.$message({
-          message: "Ward is deleted!",
+          message: "Xóa thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
@@ -77,12 +77,12 @@ export default {
         await update(values.id, values);
         await get().then((response) => (this.wards = response.data.data));
         this.$message({
-          message: "ward is updated",
+          message: "Cập nhật thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
