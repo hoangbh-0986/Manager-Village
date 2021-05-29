@@ -9,6 +9,15 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'content',
+        'author_id',
+        'craft_village_id',
+        'job_id',
+        'expert_id',
+    ];
+
     public function expert()
     {
         return $this->belongsTo('App\Models\Expert');
@@ -26,6 +35,6 @@ class Post extends Model
 
     public function author()
     {
-        return $this->belongsTo('App\Models\Author');
+        return $this->belongsTo('App\Models\User');
     }
 }

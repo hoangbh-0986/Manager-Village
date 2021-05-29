@@ -7,6 +7,8 @@ use App\Http\Controllers\ExpertController;
 use App\Http\Controllers\WardController;
 use App\Http\Controllers\CraftVillageController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PostController;
+
 
 
 /*
@@ -57,3 +59,9 @@ Route::post('/job', [JobController::class, 'CreateJob']);
 Route::get('/job/{id}', [JobController::class, 'DetailJob']);
 Route::put('/job/{id}', [JobController::class, 'UpdateJob']);
 Route::delete('/job/{id}', [JobController::class, 'DeleteJob']);
+
+Route::get('/post', [PostController::class, 'GetPost']);
+Route::post('/post', [PostController::class, 'CreatePost']);
+Route::get('/post/{id}', [PostController::class, 'DetailPost']);
+Route::put('/post/{id}', [PostController::class, 'UpdatePost']);
+Route::delete('/post/{id}', [PostController::class, 'DeletePost']);
