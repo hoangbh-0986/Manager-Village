@@ -12,7 +12,7 @@
       label-width="150px"
       label-position="left"
     >
-      <el-form-item label="Name" prop="name">
+      <el-form-item label="Tên" prop="name">
         <el-input v-model="form.name" />
       </el-form-item>
 
@@ -20,12 +20,12 @@
         <el-input v-model="form.email" />
       </el-form-item>
 
-      <el-form-item label="Phone Number" prop="phone">
+      <el-form-item label="Số điện thoại" prop="phone">
         <el-input v-model.number="form.phone" />
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="submitForm"> Confirm </el-button>
+        <el-button type="primary" @click="submitForm"> Tạo </el-button>
         <el-button @click="resetForm()"> Reset </el-button>
       </el-form-item>
     </el-form>
@@ -52,13 +52,13 @@ export default {
       show: false,
       rules: {
         name: [
-          { required: true, message: "Please input name", trigger: "blur" },
+          { required: true, message: "Tên là bắt buộc", trigger: "blur" },
         ],
         email: [
-          { required: true, message: "Please input email", trigger: "blur" },
+          { required: true, message: "Email là bắt buộc", trigger: "blur" },
         ],
         phone: [
-          { required: true, message: "Please input a number", trigger: "blur" },
+          { required: true, message: "Số điện thoại là bắt buộc", trigger: "blur" },
         ],
       },
     };

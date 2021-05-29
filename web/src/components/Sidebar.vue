@@ -3,37 +3,37 @@
     <router-link
       to="/admin/craft-village"
       class="aside-btn"
-      :class="{ active: $route.name == 'index' }"
+      :class="$route.name === 'craft-village' ? 'active' : ''"
     >
-      <div>Craft Village</div>
+      <div>Làng Nghề</div>
     </router-link>
     <router-link
       to="/admin/ward"
       class="aside-btn"
-      :class="{ active: $route.name == 'contests' }"
+      :class="$route.name === 'ward' ? 'active' : ''"
     >
-      <div>Ward</div>
+      <div>Khu Vực(xã, phường)</div>
     </router-link>
     <router-link
       to="/admin/job"
       class="aside-btn"
-      :class="{ active: $route.name == 'users' }"
+      :class="$route.name === 'job' ? 'active' : ''"
     >
-      <div>Job</div>
+      <div>Nghề Truyền Thống</div>
     </router-link>
     <router-link
-      to="/posts"
+      to="/admin/posts"
       class="aside-btn"
-      :class="{ active: $route.name == 'posts' }"
+      :class="$route.name === 'posts' ? 'active' : ''"
     >
-      <div>Posts</div>
+      <div>Bài Viết</div>
     </router-link>
     <router-link
       to="/admin/expert"
       class="aside-btn"
-      :class="{ active: $route.name == 'posts' }"
+      :class="$route.name === 'expert' ? 'active' : ''"
     >
-      <div>Expert</div>
+      <div>Nghệ Nhân</div>
     </router-link>
   </aside>
 </template>
@@ -42,8 +42,7 @@
 .aside-btn {
   @apply block text-gray-700 px-2 py-3 mb-1 outline-none;
 }
-
-.nuxt-link-exact-active {
-  @apply bg-gray-100 font-bold text-gray-900 rounded-lg;
+.active {
+ background-color: rgba(111, 111, 190, 0.219);
 }
 </style>

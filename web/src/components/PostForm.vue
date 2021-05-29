@@ -2,7 +2,7 @@
   <el-dialog
     :title="title"
     :visible.sync="show"
-    width="600px"
+    width=90%
     @close="resetForm()"
   >
     <el-form
@@ -12,33 +12,21 @@
       label-width="150px"
       label-position="left"
     >
-      <el-form-item label="Tên" prop="name">
-        <el-input v-model="form.name" />
+      <el-form-item label="Tiêu đề" prop="title">
+        <el-input v-model="form.title" />
       </el-form-item>
 
-      <el-form-item label="Năm sinh" prop="year_of_birth" reqired>
-        <el-date-picker
-          v-model="form.year_of_birth"
-          type="datetime"
-          :clearable="false"
-          format="yyyy/MM/dd"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          placeholder="Chọn năm sinh"
-        >
-        </el-date-picker>
+      <el-form-item label="Tác giả" prop="author_id">
+        <el-input v-model="form.author_id" />
       </el-form-item>
 
-      <el-form-item label="Năm mất" prop="year_died">
-        <el-date-picker
-          v-model="form.year_died"
-          type="datetime"
-          :clearable="false"
-          format="yyyy/MM/dd"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          placeholder="Chọn năm mất"
-        >
-        </el-date-picker>
-      </el-form-item>
+    <el-form-item label="Nội dung" prop="content">
+      <vue-simplemde
+        v-model="form.content"
+        preview-class="markdown-body"
+        ref="markdownEditor"
+      />
+    </el-form-item>
 
       <el-form-item>
         <el-button type="primary" @click="submitForm"> Confirm </el-button>
@@ -50,15 +38,18 @@
 
 <script>
 import _cloneDeep from "lodash/cloneDeep";
+import VueSimplemde from 'vue-simplemde'
 
 const emptyState = () => ({
-  name: "",
-  year_create: "",
-  ancestor: "",
-  note: "",
+  title: "",
+  content: "",
+  author_id: "",
 });
 
 export default {
+  components: {
+    VueSimplemde,
+  },
   props: {
     title: String,
   },
@@ -68,15 +59,14 @@ export default {
       form: emptyState(),
       show: false,
       rules: {
-        name: [
-          { required: true, message: "Tên là bắt buộc", trigger: "blur" },
+        title: [
+          { required: true, message: "Tiêu đề  là bắt buộc", trigger: "blur" },
         ],
-        year_of_birth: [
-          {
-            required: true,
-            message: "Năm sinh là bắt buộc",
-            trigger: "blur",
-          },
+        content: [
+          { required: true, message: "Nội dung là bắt buộc", trigger: "blur" },
+        ],
+        author_id: [
+          { required: true, message: "Tác giả là bắt buộc", trigger: "blur" },
         ],
       },
     };
@@ -109,3 +99,8 @@ export default {
   },
 };
 </script>
+
+<style>
+@import "~simplemde/dist/simplemde.min.css";
+@import "~github-markdown-css";
+</style>

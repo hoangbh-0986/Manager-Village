@@ -84,9 +84,9 @@
 </template>
 
 <script>
-import { get } from "../../api/craftVillage";
-import { get as getJob } from "../../api/job";
-import { get as getExpert } from "../../api/expert";
+import { get } from "../api/craftVillage";
+import { get as getJob } from "../api/job";
+import { get as getExpert } from "../api/expert";
 import { mapGetters } from "vuex";
 import Logout from "@/components/Logout";
 import HomeIcon from "@/components/icons/HomeIcon";

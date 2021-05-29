@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import { get as getJob } from "../../api/job";
+import { get as getJob } from "../api/job";
 import SlideShow from "@/components/SlideShowContact.vue";
 import Banner from "@/components/Banner.vue";
 import Header from "@/components/Header.vue";

@@ -11,15 +11,15 @@
 
     <CraftVillageForm
       ref="create"
-      title="Create new Craft Village"
+      title="Thêm làng nghề mới"
       @save="create"
     />
-    <CraftVillageForm ref="edit" title="Edit Craft Village" @save="onEdit" />
+    <CraftVillageForm ref="edit" title="Cập nhật làng nghề" @save="onEdit" />
   </DashBoard>
 </template>
 
 <script>
-import { get, create, destroy, update } from "../../api/craftVillage";
+import { get, create, destroy, update } from "../api/craftVillage";
 import Pagination from "@/components/Pagination.vue";
 import List from "@/components/CraftVillage.vue";
 import CraftVillageForm from "@/components/CraftVillageForm.vue";
@@ -40,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.craftVillages = response.data.craftVillage));
+    get().then((response) => (this.craftVillages = response.data.craftVillage, this.total = response.data.craftVillage.length));
   },
 
   methods: {
@@ -49,12 +49,12 @@ export default {
         await create(values);
         await get().then((response) => (this.craftVillages = response.data.craftVillage));
         this.$message({
-          message: "Craft Villages is created!",
+          message: "CLàng nghề được tạo thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
@@ -65,12 +65,12 @@ export default {
         await destroy(id);
         await get().then((response) => (this.craftVillages = response.data.craftVillage));
         this.$message({
-          message: "Craft Villages is deleted!",
+          message: "Đã xóa làng nghề",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
@@ -81,12 +81,12 @@ export default {
         await update(values.id, values);
         await get().then((response) => (this.craftVillages = response.data.craftVillage));
         this.$message({
-          message: "Craft Villages is updated",
+          message: "Cập nhật thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
