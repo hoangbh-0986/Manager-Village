@@ -22,10 +22,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "abcss" */ "../views/Ward"),
   },
   {
+    path: "/admin/users",
+    name: "usersAdmin",
+    meta: { middleware: [auth, admin] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/UsersAdmin"),
+  },
+  {
     path: "/admin/detail-post",
     name: "detail",
     meta: { middleware: [auth, admin] },
-    component: () => import(/* webpackChunkName: "abcss" */ "../views/DatailPost"),
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/DetailPost"),
   },
   {
     path: "/admin/craft-village",

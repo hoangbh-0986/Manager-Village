@@ -1,33 +1,72 @@
 <template>
-  <el-form
-    :model="ruleForm"
-    status-icon
-    :rules="rules"
-    ref="ruleForm"
-    label-width="120px"
-    class="demo-ruleForm"
-  >
-    <el-form-item label="Tiêu đề" prop="title">
-      <el-input v-model="ruleForm.title" autocomplete="off"></el-input>
-    </el-form-item>
-    <el-form-item label="Nội dung" prop="content">
-      <vue-simplemde
-        v-model="ruleForm.content"
-        preview-class="markdown-body"
-        ref="markdownEditor"
-      />
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')"
-        >Tạo bài</el-button
-      >
-      <el-button @click="resetForm('ruleForm')">Reset</el-button>
-    </el-form-item>
-  </el-form>
+  <div class="m-10">
+    <el-form
+      :model="ruleForm"
+      status-icon
+      :rules="rules"
+      ref="ruleForm"
+      label-width="120px"
+      class="demo-ruleForm"
+    >
+      <el-form-item label="Tiêu đề" prop="title">
+        <el-input v-model="ruleForm.title" autocomplete="off"></el-input>
+      </el-form-item>
+      <el-form-item label="Nội dung" prop="content">
+        <vue-simplemde
+          v-model="ruleForm.content"
+          preview-class="markdown-body"
+          ref="markdownEditor"
+        />
+      </el-form-item>
+      <div class="flex ml-20">
+        <el-form-item label="Làng nghề " prop="craft_village_id">
+          <el-select v-model="ruleForm.craft_village_id" placeholder="Vui lòng chọn 1 làng nghề">
+            <el-option 
+              v-for="item in craftVillages"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+
+          </el-form-item>
+              <el-form-item label="Nghề " prop="job_id">
+          <el-select v-model="ruleForm.job_id" placeholder="Vui lòng chọn 1 nghề">
+            <el-option 
+              v-for="item in jobs"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+
+          </el-form-item>
+              <el-form-item label="Nghệ nhân" prop="expert_id">
+          <el-select v-model="ruleForm.expert_id" placeholder="Vui lòng chọn 1 nghệ nhân">
+            <el-option 
+              v-for="item in experts"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+      </div>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm')"
+          >Tạo bài</el-button
+        >
+        <el-button @click="resetForm('ruleForm')">Reset</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 <script>
 import VueSimplemde from 'vue-simplemde'
 import { get, create } from "../api/post";
+import { get as getCraftVillage } from "../api/craftVillage";
+import { get as getExpert } from "../api/expert";
+import { get as getJob } from "../api/job";
 export default {
   components: {
     VueSimplemde,
@@ -35,6 +74,9 @@ export default {
 
   data() {
     return {
+      craftVillages: [],
+      wards: [],
+      jobs: [],
       ruleForm: {
         title: '',
         content: '',
@@ -49,6 +91,13 @@ export default {
       }
     };
   },
+
+  mounted() {
+    getCraftVillage().then((response) => (this.craftVillages = response.data.craftVillage));
+    getExpert().then((response) => (this.experts = response.data.data));
+    getJob().then((response) => (this.jobs = response.data.data));
+  },
+
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {

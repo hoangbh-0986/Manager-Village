@@ -12,8 +12,6 @@
     <ExpertForm ref="create" title="Thêm mới nghệ nhân" @save="create" />
     <ExpertForm ref="edit" title="Cập nhật thông tin nghệ nhân" @save="onEdit" />
 
-
-    <VueSimolemde />
   </DashBoard>
 </template>
 
@@ -23,7 +21,6 @@ import Pagination from "@/components/Pagination.vue";
 import List from "@/components/ListExpert.vue";
 import ExpertForm from "@/components/ExpertForm.vue";
 import DashBoard from "@/components/DashBoard.vue";
-import VueSimolemde from "@/components/VueSimplemde.vue"
 
 export default {
   components: {
@@ -31,7 +28,6 @@ export default {
     List,
     ExpertForm,
     DashBoard,
-    VueSimolemde,
   },
 
   data() {

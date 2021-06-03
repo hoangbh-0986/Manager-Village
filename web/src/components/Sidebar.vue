@@ -35,6 +35,13 @@
     >
       <div>Nghệ Nhân</div>
     </router-link>
+    <router-link
+      to="/admin/users"
+      class="aside-btn"
+      :class="$route.name === 'usersAdmin' ? 'active' : ''"
+    >
+      <div>Người dùng</div>
+    </router-link>
   </aside>
 </template>
 
