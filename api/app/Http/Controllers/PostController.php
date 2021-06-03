@@ -6,18 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ResourcesPost;
 
 class PostController extends Controller
 {
     public function GetPost()
     {
-        // return Post::orderBy('created_at', 'asc')
-        //     ->paginate(20);
 
         $post = Post::with('author')->get();
-        return  response()->json([
-            'post' => $post,
-        ]);
+
+        return ResourcesPost::collection($post);
     }
 
     public function CreatePost(Request $request) {
@@ -37,15 +35,15 @@ class PostController extends Controller
         ]);
         $post->save();
         return response()->json([
-            'messege' => 'Succsess create new user',
+            'messege' => 'Succsess create new post',
         ], 201);
     }
 
     public function DetailPost($id)
     {
-        $post = Post::find($id);
+        $post = Post::with('author')->find($id);
 
-        return $post;
+        return new ResourcesPost($post);
     }
 
     public function UpdatePost(Request $request, $id)
@@ -68,12 +66,43 @@ class PostController extends Controller
         return $post;
     }
 
-    public function DeleteJob($id)
+    public function DeletePost($id)
     {
         $post = Post::find($id);
 
         return response()->json([
             'success' => (bool) ($post->delete()),
         ]);
+    }
+
+    public function DetailPostJob($id)
+    {
+        $post = Post::with('author')->where('job_id', $id)->first();
+
+        return new ResourcesPost($post);
+    }
+
+
+    public function DetailPostExpert($id)
+    {
+        $post = Post::with('expert')->where('expert_id', $id)->first();
+
+        return new ResourcesPost($post);
+    }
+
+
+    public function DetailPostWard($id)
+    {
+        $post = Post::with('ward')->where('ward_id', $id)->first();
+
+        return new ResourcesPost($post);
+    }
+
+
+    public function DetailPostJCraftVillage($id)
+    {
+        $post = Post::with('craftVillage')->where('craft_village_id', $id)->first();
+
+        return new ResourcesPost($post);
     }
 }

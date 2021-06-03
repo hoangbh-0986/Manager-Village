@@ -19,4 +19,9 @@ class Ward extends Model
     {
         return $this->hasMany('App\Models\CraftVillage');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }

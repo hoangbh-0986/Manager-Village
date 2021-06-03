@@ -37,4 +37,15 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+
+    public function ward()
+    {
+        return $this->belongsTo('App\Models\Ward');
+    }
+
+    public function shortContent(): String
+    {
+      return substr($this->content, 0, 250);
+    }
 }
