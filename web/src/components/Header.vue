@@ -22,6 +22,7 @@
               v-for="item in jobs.slice(0, 7)"
               :key="item.id"
               :index="item.id"
+              @click="detailJob(item)"
             >
               {{ item.name }}
             </el-menu-item>
@@ -34,6 +35,7 @@
               v-for="item in carftVillages"
               :key="item.id"
               :index="item.id"
+              @click="detailCarftVillages(item)"
             >
               {{ item.name }}
             </el-menu-item>
@@ -44,6 +46,7 @@
               v-for="item in experts.slice(0, 5)"
               :key="item.id"
               :index="item.id"
+              @click="detailExpert(item)"
             >
               {{ item.name }}
             </el-menu-item>
@@ -117,6 +120,27 @@ export default {
   },
   computed: {
     ...mapGetters("auth", ["authUser", "isAdmin"]),
+  },
+
+  methods: {
+    detailJob(item) {
+      this.$router.push({
+        path: '/admin/detail-post',
+        query: { type: 'job', id: item.id },
+        });
+    },
+    detailCarftVillages(item) {
+      this.$router.push({
+        path: '/admin/detail-post',
+        query: { type: 'carftVillage', id: item.id },
+        });
+    },
+    detailExpert(item) {
+      this.$router.push({
+        path: '/admin/detail-post',
+        query: { type: 'expert', id: item.id },
+      });
+    }
   },
 };
 </script>

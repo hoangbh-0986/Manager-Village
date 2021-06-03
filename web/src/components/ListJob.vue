@@ -39,7 +39,6 @@
 export default {
   props: {
     jobs: {
-      type: Array,
       required: true,
     },
   },

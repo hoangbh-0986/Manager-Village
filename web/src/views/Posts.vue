@@ -33,14 +33,14 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.posts = response.data.post, this.total = response.data.post.lenght));
+    get().then((response) => (this.posts = response.data.data, this.total = response.data.data.lenght));
   },
 
   methods: {
     async create(values) {
       try {
         await create(values);
-        await get().then((response) => (this.posts = response.data.post));
+        await get().then((response) => (this.posts = response.data.data));
         this.$message({
           message: "Expert is created!",
           type: "success",
@@ -56,7 +56,7 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
-        await get().then((response) => (this.posts = response.data.post));
+        await get().then((response) => (this.posts = response.data.data));
         this.$message({
           message: "Expert is deleted!",
           type: "success",
@@ -72,7 +72,7 @@ export default {
     async onEdit(values) {
       try {
         await update(values.id, values);
-        await get().then((response) => (this.posts = response.data.post));
+        await get().then((response) => (this.posts = response.data.data));
         this.$message({
           message: "Expert is updated",
           type: "success",

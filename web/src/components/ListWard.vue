@@ -38,7 +38,6 @@
 export default {
   props: {
     wards: {
-      type: Array,
       required: true,
     },
   },

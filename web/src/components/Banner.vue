@@ -7,8 +7,8 @@
         </router-link>
       </div>
       <div class="slogan m-5">
-        <h1>
-          TRANG THÔNG TIN ĐIỆN TỬ VĂN HÓA - DU LỊCH - LÀNG NGHỀ THÀNH PHỐ HÀ NÔI
+        <h1 class="title-banner">
+          TRANG THÔNG TIN ĐIỆN TỬ VĂN HÓA - DU LỊCH - LÀNG NGHỀ THÀNH PHỐ HÀ NỘI
         </h1>
       </div>
       <div class="contact m-5 flex flex-col">
@@ -32,5 +32,11 @@ export default {};
 <style scoped>
 #setion-hero {
   background-image: url("../assets/images/background.png");
+}
+.title-banner {
+  font-size: 25px;
+  font-weight: 600;
+  color: #0056a2;
+  line-height: 35px;
 }
 </style>

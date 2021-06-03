@@ -10,14 +10,14 @@
       </router-link>
     </div>
     <el-table :data="posts" style="width: 100%">
-      <el-table-column prop="id" lable="#" sortable />
-      <el-table-column label="Tiêu đề" prop="title" width="180"> </el-table-column>
-      <el-table-column label="Nội dung" prop="content" />
+      <el-table-column prop="id" width="100" lable="#" sortable />
+      <el-table-column label="Tiêu đề" prop="title" width="200"> </el-table-column>
+      <el-table-column label="Nội dung" width="450" prop="short_content" />
       <el-table-column
         fixed="right"
         label="Actions"
         align="center"
-        min-width="150"
+        min-width="110"
       >
         <template slot-scope="scope">
           <el-button icon="el-icon-edit" circle @click="onEdit(scope.row)" />

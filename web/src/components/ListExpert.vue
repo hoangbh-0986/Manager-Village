@@ -38,7 +38,6 @@
 export default {
   props: {
     experts: {
-      type: Array,
       required: true,
     },
   },
