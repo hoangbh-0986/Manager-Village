@@ -25,7 +25,7 @@ class ResourcesPost extends JsonResource
           'craft_village_id' => $this->craft_village_id,
           'job_id' => $this->job_id,
           'expert_id' => $this->expert_id,
-          'short_content' => $this->shortContent(),
+          'short_content' => mb_convert_encoding($this->shortContent(), 'UTF-8', 'UTF-8'),
           'author' => $this->author,
         ];
     }

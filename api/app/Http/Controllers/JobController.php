@@ -9,8 +9,12 @@ class JobController extends Controller
 {
     public function GetJob()
     {
-        return Job::orderBy('created_at', 'asc')
-            ->paginate(20);
+        // return Job::orderBy('created_at', 'asc')
+        //     ->paginate(20);
+        $job = Job::with('posts')->get();
+        return  response()->json([
+            'jobs' => $job,
+        ]);
     }
 
     public function CreateJob(Request $request) {
@@ -35,7 +39,10 @@ class JobController extends Controller
 
     public function DetailJob($id)
     {
-        $job = Job::find($id);
+        // $job = Job::find($id);
+
+        // return $job;
+        $job = Job::with('posts')->find($id);
 
         return $job;
     }

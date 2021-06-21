@@ -16,6 +16,7 @@ class PostController extends Controller
         $post = Post::with('author')->get();
 
         return ResourcesPost::collection($post);
+        // return $post;
     }
 
     public function CreatePost(Request $request) {

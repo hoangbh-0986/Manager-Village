@@ -9,8 +9,12 @@ class ExpertController extends Controller
 {
     public function GetExpert()
     {
-        return Expert::orderBy('created_at', 'asc')
-            ->paginate(20);
+        // return Expert::orderBy('created_at', 'asc')
+        //     ->paginate(20);
+        $expert = Expert::with('posts')->get();
+        return  response()->json([
+            'experts' => $expert,
+        ]);
     }
 
     public function CreateExpert(Request $request) {
@@ -36,7 +40,10 @@ class ExpertController extends Controller
 
     public function DetailExpert($id)
     {
-        $expert = Expert::find($id);
+        // $expert = Expert::find($id);
+
+        // return $expert;
+        $expert = Expert::with('posts')->find($id);
 
         return $expert;
     }
