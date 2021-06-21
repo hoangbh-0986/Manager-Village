@@ -10,8 +10,11 @@
     <Pagination :total="total" />
 
     <ExpertForm ref="create" title="Thêm mới nghệ nhân" @save="create" />
-    <ExpertForm ref="edit" title="Cập nhật thông tin nghệ nhân" @save="onEdit" />
-
+    <ExpertForm
+      ref="edit"
+      title="Cập nhật thông tin nghệ nhân"
+      @save="onEdit"
+    />
   </DashBoard>
 </template>
 
@@ -37,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.experts = response.data.data));
+    get().then((response) => (this.experts = response.data.experts));
   },
 
   methods: {
@@ -60,7 +63,12 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
-        await get().then((response) => (this.experts = response.data.data, this.total = response.data.total));
+        await get().then(
+          (response) => (
+            (this.experts = response.data.data),
+            (this.total = response.data.total)
+          )
+        );
         this.$message({
           message: "Đã xóa nghệ nhân",
           type: "success",

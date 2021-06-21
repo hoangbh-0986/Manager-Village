@@ -16,6 +16,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ "../views/Home"),
   },
   {
+    path: "/post/:post_id",
+    name: "detailPost",
+    // meta: { middleware: [guest] },
+    component: () => import(/* webpackChunkName: "home" */ "../views/DetailPost"),
+  },
+  {
     path: "/admin/ward",
     name: "ward",
     meta: { middleware: [auth, admin] },
@@ -25,19 +31,22 @@ const routes = [
     path: "/admin/users",
     name: "usersAdmin",
     meta: { middleware: [auth, admin] },
-    component: () => import(/* webpackChunkName: "abcss" */ "../views/UsersAdmin"),
+    component: () =>
+      import(/* webpackChunkName: "abcss" */ "../views/UsersAdmin"),
   },
   {
     path: "/admin/detail-post",
     name: "detail",
     meta: { middleware: [auth, admin] },
-    component: () => import(/* webpackChunkName: "abcss" */ "../views/DetailPost"),
+    component: () =>
+      import(/* webpackChunkName: "abcss" */ "../views/DetailPost"),
   },
   {
     path: "/admin/craft-village",
     name: "craft-village",
     meta: { middleware: [auth, admin] },
-    component: () => import(/* webpackChunkName: "abcss" */ "../views/CraftVillage"),
+    component: () =>
+      import(/* webpackChunkName: "abcss" */ "../views/CraftVillage"),
   },
   {
     path: "/admin/expert",
@@ -106,7 +115,8 @@ const routes = [
   {
     path: "/admin/post/create",
     name: "view-postsd",
-    component: () => import(/* webpackChunkName: "home" */ "../views/CreatePost"),
+    component: () =>
+      import(/* webpackChunkName: "home" */ "../views/CreatePost"),
   },
   {
     path: "/:catchAll(.*)",

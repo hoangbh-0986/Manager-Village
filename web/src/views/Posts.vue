@@ -16,7 +16,7 @@ import { get, create, destroy, update } from "../api/post";
 import Pagination from "@/components/Pagination.vue";
 import List from "@/components/ListPosts.vue";
 import DashBoard from "@/components/DashBoard.vue";
-import PostForm from "@/components/PostForm.vue"
+import PostForm from "@/components/PostForm.vue";
 
 export default {
   components: {
@@ -33,7 +33,12 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.posts = response.data.data, this.total = response.data.data.lenght));
+    get().then(
+      (response) => (
+        (this.posts = response.data.data),
+        (this.total = response.data.data.lenght)
+      )
+    );
   },
 
   methods: {

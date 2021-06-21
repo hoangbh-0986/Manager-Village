@@ -50,6 +50,6 @@
   @apply block text-gray-700 px-2 py-3 mb-1 outline-none;
 }
 .active {
- background-color: rgba(111, 111, 190, 0.219);
+  background-color: rgba(111, 111, 190, 0.219);
 }
 </style>

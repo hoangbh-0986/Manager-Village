@@ -36,7 +36,11 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.wards = response.data.data, this.total = response.data.total));
+    get().then(
+      (response) => (
+        (this.wards = response.data.data), (this.total = response.data.total)
+      )
+    );
   },
 
   methods: {

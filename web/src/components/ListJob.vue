@@ -14,7 +14,8 @@
       <el-table-column label="Năm thành lập" prop="year_create">
       </el-table-column>
       <el-table-column label="Ông tổ nghề" prop="ancestor"> </el-table-column>
-      <el-table-column label="Ghi chú" width="200" prop="note"> </el-table-column>
+      <el-table-column label="Ghi chú" width="200" prop="note">
+      </el-table-column>
       <el-table-column
         fixed="right"
         label="Hành Động"

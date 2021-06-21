@@ -9,11 +9,7 @@
 
     <Pagination :total="total" />
 
-    <CraftVillageForm
-      ref="create"
-      title="Thêm làng nghề mới"
-      @save="create"
-    />
+    <CraftVillageForm ref="create" title="Thêm làng nghề mới" @save="create" />
     <CraftVillageForm ref="edit" title="Cập nhật làng nghề" @save="onEdit" />
   </DashBoard>
 </template>
@@ -40,14 +36,21 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.craftVillages = response.data.craftVillage, this.total = response.data.craftVillage.length));
+    get().then(
+      (response) => (
+        (this.craftVillages = response.data.craftVillage),
+        (this.total = response.data.craftVillage.length)
+      )
+    );
   },
 
   methods: {
     async create(values) {
       try {
         await create(values);
-        await get().then((response) => (this.craftVillages = response.data.craftVillage));
+        await get().then(
+          (response) => (this.craftVillages = response.data.craftVillage)
+        );
         this.$message({
           message: "CLàng nghề được tạo thành công",
           type: "success",
@@ -63,7 +66,9 @@ export default {
     async onDelete(id) {
       try {
         await destroy(id);
-        await get().then((response) => (this.craftVillages = response.data.craftVillage));
+        await get().then(
+          (response) => (this.craftVillages = response.data.craftVillage)
+        );
         this.$message({
           message: "Đã xóa làng nghề",
           type: "success",
@@ -79,7 +84,9 @@ export default {
     async onEdit(values) {
       try {
         await update(values.id, values);
-        await get().then((response) => (this.craftVillages = response.data.craftVillage));
+        await get().then(
+          (response) => (this.craftVillages = response.data.craftVillage)
+        );
         this.$message({
           message: "Cập nhật thành công",
           type: "success",

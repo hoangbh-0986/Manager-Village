@@ -1,3 +1,6 @@
-import axios from "axios"
+import axios from "axios";
 
-export default axios.create({ baseURL: "http://api.app.local/api", withCredentials: true })
+export default axios.create({
+  baseURL: "http://api.app.local/api",
+  withCredentials: true,
+});

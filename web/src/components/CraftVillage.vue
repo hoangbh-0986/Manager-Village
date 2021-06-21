@@ -11,9 +11,9 @@
     <el-table :data="craftVillages" style="width: 100%">
       <el-table-column prop="id" lable="#" sortable />
       <el-table-column label="Tên" width="180" prop="name"> </el-table-column>
-      <el-table-column label="Số điện thoại" prop="phone" width="180"> </el-table-column>
-      <el-table-column label="Ra đời Năm" prop="create_year">
+      <el-table-column label="Số điện thoại" prop="phone" width="180">
       </el-table-column>
+      <el-table-column label="Ra đời Năm" prop="create_year"> </el-table-column>
       <el-table-column
         fixed="right"
         label="Hành Động"

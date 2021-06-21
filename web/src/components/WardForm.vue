@@ -51,14 +51,16 @@ export default {
       form: emptyState(),
       show: false,
       rules: {
-        name: [
-          { required: true, message: "Tên là bắt buộc", trigger: "blur" },
-        ],
+        name: [{ required: true, message: "Tên là bắt buộc", trigger: "blur" }],
         email: [
           { required: true, message: "Email là bắt buộc", trigger: "blur" },
         ],
         phone: [
-          { required: true, message: "Số điện thoại là bắt buộc", trigger: "blur" },
+          {
+            required: true,
+            message: "Số điện thoại là bắt buộc",
+            trigger: "blur",
+          },
         ],
       },
     };

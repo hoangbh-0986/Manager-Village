@@ -36,14 +36,18 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.jobs = response.data.data));
+    get().then((response) => (this.jobs = response.data.jobs));
   },
 
   methods: {
     async create(values) {
       try {
         await create(values);
-        await get().then((response) => (this.jobs = response.data.data, this.total = response.data.total));
+        await get().then(
+          (response) => (
+            (this.jobs = response.data.data), (this.total = response.data.total)
+          )
+        );
         this.$message({
           message: "Thêm mới nghề thành công",
           type: "success",
