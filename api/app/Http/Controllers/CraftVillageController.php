@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CraftVillage;
 use App\Models\DetailCraftVillage;
+use App\Http\Resources\CraftVilageResources;
 
 class CraftVillageController extends Controller
 {
     public function GetCraftVillage()
     {
-        $craftVillage = CraftVillage::with('detailCaftVillage')->get();
+        $craftVillage = CraftVillage::with('posts')->get();
         return  response()->json([
             'craftVillage' => $craftVillage,
         ]);
@@ -40,8 +41,11 @@ class CraftVillageController extends Controller
 
     public function DetailCraftVillage($id)
     {
-        $craftVillage = CraftVillage::with('detailCaftVillage')->find($id);
-        return $craftVillage;
+        // $craftVillage = CraftVillage::with('detailCaftVillage')->find($id);
+        // return $craftVillage;
+        $post = CraftVillage::with('posts')->find($id);
+
+        return new CraftVilageResources($post);
     }
 
     public function UpdateCraftVillage(Request $request, $id)
@@ -72,5 +76,12 @@ class CraftVillageController extends Controller
         return response()->json([
             'success' => (bool) ($craftVillage->delete()),
         ]);
+    }
+
+    public function getPostByCraftVilage($id)
+    {
+        $post = CraftVillage::with('posts')->find($id);
+
+        return $post;
     }
 }
