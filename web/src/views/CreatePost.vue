@@ -20,30 +20,38 @@
       </el-form-item>
       <div class="flex ml-20">
         <el-form-item label="Làng nghề " prop="craft_village_id">
-          <el-select v-model="ruleForm.craft_village_id" placeholder="Vui lòng chọn 1 làng nghề">
-            <el-option 
+          <el-select
+            v-model="ruleForm.craft_village_id"
+            placeholder="Vui lòng chọn 1 làng nghề"
+          >
+            <el-option
               v-for="item in craftVillages"
               :key="item.id"
               :label="item.name"
               :value="item.id"
             ></el-option>
           </el-select>
-
-          </el-form-item>
-              <el-form-item label="Nghề " prop="job_id">
-          <el-select v-model="ruleForm.job_id" placeholder="Vui lòng chọn 1 nghề">
-            <el-option 
+        </el-form-item>
+        <el-form-item label="Nghề " prop="job_id">
+          <el-select
+            v-model="ruleForm.job_id"
+            placeholder="Vui lòng chọn 1 nghề"
+          >
+            <el-option
               v-for="item in jobs"
               :key="item.id"
               :label="item.name"
               :value="item.id"
             ></el-option>
           </el-select>
+        </el-form-item>
 
-          </el-form-item>
-              <el-form-item label="Nghệ nhân" prop="expert_id">
-          <el-select v-model="ruleForm.expert_id" placeholder="Vui lòng chọn 1 nghệ nhân">
-            <el-option 
+        <el-form-item label="Nghệ nhân" prop="expert_id">
+          <el-select
+            v-model="ruleForm.expert_id"
+            placeholder="Vui lòng chọn 1 nghệ nhân"
+          >
+            <el-option
               v-for="item in experts"
               :key="item.id"
               :label="item.name"
@@ -62,7 +70,7 @@
   </div>
 </template>
 <script>
-import VueSimplemde from 'vue-simplemde'
+import VueSimplemde from "vue-simplemde";
 import { get, create } from "../api/post";
 import { get as getCraftVillage } from "../api/craftVillage";
 import { get as getExpert } from "../api/expert";
@@ -78,8 +86,8 @@ export default {
       wards: [],
       jobs: [],
       ruleForm: {
-        title: '',
-        content: '',
+        title: "",
+        content: "",
       },
       rules: {
         title: [
@@ -88,12 +96,14 @@ export default {
         content: [
           { required: true, message: "Nội dung là bắt buộc", trigger: "blur" },
         ],
-      }
+      },
     };
   },
 
   mounted() {
-    getCraftVillage().then((response) => (this.craftVillages = response.data.craftVillage));
+    getCraftVillage().then(
+      (response) => (this.craftVillages = response.data.craftVillage)
+    );
     getExpert().then((response) => (this.experts = response.data.data));
     getJob().then((response) => (this.jobs = response.data.data));
   },
@@ -102,31 +112,31 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-            try {
-              create(this.ruleForm);
-              get().then((response) => (this.posts = response.data.post));
-              this.$message({
-                message: "Tạo bài viết thành công",
-                type: "success",
-              });
-              window.location.href = "http://app.local/admin/posts"
-            } catch (e) {
-              this.$message({
-                message: "Đã có lỗi xảy ra",
-                type: "error",
-              });
+          try {
+            create(this.ruleForm);
+            get().then((response) => (this.posts = response.data.post));
+            this.$message({
+              message: "Tạo bài viết thành công",
+              type: "success",
+            });
+            window.location.href = "http://app.local/admin/posts";
+          } catch (e) {
+            this.$message({
+              message: "Đã có lỗi xảy ra",
+              type: "error",
+            });
           }
         } else {
-          console.log('error submit!!');
+          console.log("error submit!!");
           return false;
         }
       });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>

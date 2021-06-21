@@ -12,8 +12,7 @@
       <el-table-column prop="id" lable="#" sortable />
       <el-table-column label="Tên" prop="name" width="180"> </el-table-column>
       <el-table-column label="Năm sinh" prop="year_of_birth" />
-      <el-table-column label="Năm mất" prop="year_died">
-      </el-table-column>
+      <el-table-column label="Năm mất" prop="year_died"> </el-table-column>
       <el-table-column
         fixed="right"
         label="Hành Động"

@@ -36,15 +36,18 @@
         </el-date-picker>
       </el-form-item>
 
-       <el-form-item label="Xã phường" prop="ward_id">
-          <el-select v-model="form.ward_id" placeholder="Vui lòng chọn 1 xã phường">
-            <el-option 
-              v-for="item in wards"
-              :key="item.id"
-              :label="item.name"
-              :value="item.id"
-            ></el-option>
-          </el-select>
+      <el-form-item label="Xã phường" prop="ward_id">
+        <el-select
+          v-model="form.ward_id"
+          placeholder="Vui lòng chọn 1 xã phường"
+        >
+          <el-option
+            v-for="item in wards"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+          ></el-option>
+        </el-select>
       </el-form-item>
 
       <el-form-item>
@@ -79,17 +82,23 @@ export default {
       show: false,
       wards: null,
       rules: {
-        name: [
-          { required: true, message: "Tên là bắt buộc", trigger: "blur" },
-        ],
+        name: [{ required: true, message: "Tên là bắt buộc", trigger: "blur" }],
         email: [
           { required: true, message: "Email là bắt buộc", trigger: "blur" },
         ],
         phone: [
-          { required: true, message: "Số điện thoại là bắt buộc", trigger: "blur" },
-        ],        
+          {
+            required: true,
+            message: "Số điện thoại là bắt buộc",
+            trigger: "blur",
+          },
+        ],
         create_year: [
-          { required: true, message: "Năm hình thành là bắt buộc", trigger: "blur" },
+          {
+            required: true,
+            message: "Năm hình thành là bắt buộc",
+            trigger: "blur",
+          },
         ],
       },
     };

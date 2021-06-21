@@ -1,9 +1,6 @@
 <template>
   <DashBoard>
-    <List
-      :users="users"
-      @setRole="setRole"
-    />
+    <List :users="users" @setRole="setRole" />
     <Pagination :total="total" />
   </DashBoard>
 </template>
@@ -28,7 +25,12 @@ export default {
     };
   },
   mounted() {
-    get().then((response) => (this.users = response.data.data, this.total = response.data.data.lenght));
+    get().then(
+      (response) => (
+        (this.users = response.data.data),
+        (this.total = response.data.data.lenght)
+      )
+    );
   },
 
   methods: {

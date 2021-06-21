@@ -2,7 +2,7 @@
   <el-dialog
     :title="title"
     :visible.sync="show"
-    width=90%
+    width="90%"
     @close="resetForm()"
   >
     <el-form
@@ -20,13 +20,41 @@
         <el-input v-model="form.author_id" />
       </el-form-item>
 
-    <el-form-item label="Nội dung" prop="content">
-      <vue-simplemde
-        v-model="form.content"
-        preview-class="markdown-body"
-        ref="markdownEditor"
-      />
-    </el-form-item>
+      <el-form-item label="Nội dung" prop="content">
+        <vue-simplemde
+          v-model="form.content"
+          preview-class="markdown-body"
+          ref="markdownEditor"
+        />
+      </el-form-item>
+      <div class="flex">
+        <el-form-item label="Làng Nghề" prop="craft_village_id">
+          <el-select
+            v-model="form.craft_village_id"
+            placeholder="Vui lòng chọn 1 làng nghề"
+          >
+            <el-option
+              v-for="item in carftVillages"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="Nghề" prop="job_id">
+          <el-select
+            v-model="form.craft_village_id"
+            placeholder="Vui lòng chọn 1 nghề"
+          >
+            <el-option
+              v-for="item in jobs"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+      </div>
 
       <el-form-item>
         <el-button type="primary" @click="submitForm"> Confirm </el-button>
@@ -38,7 +66,9 @@
 
 <script>
 import _cloneDeep from "lodash/cloneDeep";
-import VueSimplemde from 'vue-simplemde'
+import VueSimplemde from "vue-simplemde";
+import { get } from "../api/craftVillage";
+import { get as getJob } from "../api/job";
 
 const emptyState = () => ({
   title: "",
@@ -54,10 +84,17 @@ export default {
     title: String,
   },
 
+  mounted() {
+    get().then((response) => (this.carftVillages = response.data.craftVillage));
+    getJob().then((response) => (this.jobs = response.data.data));
+  },
+
   data() {
     return {
       form: emptyState(),
       show: false,
+      carftVillages: [],
+      jobs: [],
       rules: {
         title: [
           { required: true, message: "Tiêu đề  là bắt buộc", trigger: "blur" },

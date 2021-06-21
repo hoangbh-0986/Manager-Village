@@ -5,7 +5,9 @@
         <router-link to="/">
           <HomeIcon class="w-6 h-6 text-white" />
         </router-link>
-        <router-link to="/admin/craft-village" v-if="isAdmin">Admin-DashBoard</router-link>
+        <router-link to="/admin/craft-village" v-if="isAdmin"
+          >Admin-DashBoard</router-link
+        >
       </div>
       <router-link to="/" v-else>
         <HomeIcon class="w-6 h-6 text-white" />
@@ -62,12 +64,11 @@
             <el-menu-item index="2-2">Cơ sở sản xuất lớn</el-menu-item>
             <el-menu-item index="2-3">Hợp tác xã</el-menu-item>
           </el-submenu>
-           <router-link to="/contact">
-          <el-submenu index="7" >
-            <template slot="title">Liên Hệ</template>
-          </el-submenu>
+          <router-link to="/contact">
+            <el-submenu index="7">
+              <template slot="title">Liên Hệ</template>
+            </el-submenu>
           </router-link>
-          <!-- <div class="line"></div> -->
         </el-menu>
       </div>
       <div class="inline-flex items-center space-x-5" v-if="authUser">
@@ -109,8 +110,8 @@ export default {
 
   mounted() {
     get().then((response) => (this.carftVillages = response.data.craftVillage));
-    getJob().then((response) => (this.jobs = response.data.data));
-    getExpert().then((response) => (this.experts = response.data.data));
+    getJob().then((response) => (this.jobs = response.data.jobs));
+    getExpert().then((response) => (this.experts = response.data.experts));
   },
 
   components: {
@@ -124,23 +125,38 @@ export default {
 
   methods: {
     detailJob(item) {
-      this.$router.push({
-        path: '/admin/detail-post',
-        query: { type: 'job', id: item.id },
+      if (item.posts[0].id) {
+        this.$router.push({
+          path: `/post/${item.posts[0].id}`,
         });
+      } else {
+        this.router.push({
+          path: "/post",
+        });
+      }
     },
     detailCarftVillages(item) {
-      this.$router.push({
-        path: '/admin/detail-post',
-        query: { type: 'carftVillage', id: item.id },
+      if (item.posts[0].id) {
+        this.$router.push({
+          path: `/post/${item.posts[0].id}`,
         });
+      } else {
+        this.router.push({
+          path: "/post",
+        });
+      }
     },
     detailExpert(item) {
-      this.$router.push({
-        path: '/admin/detail-post',
-        query: { type: 'expert', id: item.id },
-      });
-    }
+      if (item.posts[0].id) {
+        this.$router.push({
+          path: `/post/${item.posts[0].id}`,
+        });
+      } else {
+        this.router.push({
+          path: "/post",
+        });
+      }
+    },
   },
 };
 </script>

@@ -14,7 +14,7 @@
           <div>
             <div class="leading-loose p-5">
               <p>
-                TRANG THÔNG TIN ĐIỆN TỬ VĂN HÓA - DU LỊCH - LÀNG NGHỀ  HÀ NỘI
+                TRANG THÔNG TIN ĐIỆN TỬ VĂN HÓA - DU LỊCH - LÀNG NGHỀ HÀ NỘI
               </p>
               <p>
                 Chịu trách nhiệm nội dung: Ban vận động Hiệp hội văn hóa du lịch

@@ -55,7 +55,6 @@ const emptyState = () => ({
 });
 
 export default {
-
   props: {
     title: String,
   },
@@ -65,9 +64,7 @@ export default {
       form: emptyState(),
       show: false,
       rules: {
-        name: [
-          { required: true, message: "Tên là bắt buộc", trigger: "blur" },
-        ],
+        name: [{ required: true, message: "Tên là bắt buộc", trigger: "blur" }],
         year_create: [
           {
             required: true,
