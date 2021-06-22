@@ -48,16 +48,20 @@
 
         <el-form-item label="Nghệ nhân" prop="expert_id">
           <el-select
-            v-model="ruleForm.expert_id"
-            placeholder="Vui lòng chọn 1 nghệ nhân"
+            v-model="ruleForm.category_id"
+            placeholder="Vui lòng chọn loại bài viết"
           >
             <el-option
-              v-for="item in experts"
+              v-for="item in categories"
               :key="item.id"
               :label="item.name"
               :value="item.id"
             ></el-option>
           </el-select>
+        </el-form-item>
+
+        <el-form-item label="Hình ảnh" prop="image">
+          <el-input type="file" v-model="ruleForm.image" class="form-control-file h-full" @change="onFileChange"></el-input>
         </el-form-item>
       </div>
       <el-form-item>
@@ -73,7 +77,7 @@
 import VueSimplemde from "vue-simplemde";
 import { get, create } from "../api/post";
 import { get as getCraftVillage } from "../api/craftVillage";
-import { get as getExpert } from "../api/expert";
+import { get as getCategory } from "../api/category";
 import { get as getJob } from "../api/job";
 export default {
   components: {
@@ -104,8 +108,8 @@ export default {
     getCraftVillage().then(
       (response) => (this.craftVillages = response.data.craftVillage)
     );
-    getExpert().then((response) => (this.experts = response.data.data));
-    getJob().then((response) => (this.jobs = response.data.data));
+    getCategory().then((response) => (this.categories = response.data.categorys));
+    getJob().then((response) => (this.jobs = response.data.jobs));
   },
 
   methods: {
@@ -134,6 +138,9 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    onFileChange(event) {
+      this.ruleForm.image = event.target.files[0].name;
     },
   },
 };
