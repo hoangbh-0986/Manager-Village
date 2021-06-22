@@ -4,49 +4,54 @@
       <h1 class="my-1 title-general">Giới thiêu chung</h1>
       <img src="../assets/images/title.png" />
       <div class="flex my-10">
-        <div class="item border m-2 flex flex-col p-1">
-          <img src="../assets/images/news1.png" alt="" />
-          <h2 class="title-item my-2">NẾP SỐNG CON NGƯỜI</h2>
-          <p>
-            Thông tin chung - Đơn vị: Huyện ủy-HĐND-UBND huyện Thường Tín - Địa
-            chỉ: Thị trấn Thường Tín, huyện Thường Tín, TP Hà Nội - Số điện
-            thoại: (024) 3853296; Email: vanthu_thuongtin@hanoi.gov.vn - Diện
-            tích: 127,59 km2 - Dân số: khoảng 236.300 người. - Các đơn vị hành
-            chính huyện gồm 1 Thị trấn: Thường Tín và 28 xã: Chương Dương, Dũng
-            Tiến, Duyên Thái, Hà
+        <div 
+          class="item border m-2 flex flex-col p-1"
+          v-for="item in posts"
+          :key="item.id"
+          :index="item.id"
+        >
+          <img :src="srcImage(item)" alt="" style="min-height: 400px;"/>
+          <h2 class="title-item my-2">{{ item.title }}</h2>
+          <p class="short-content">
+            {{ item.content.substr(0, 200) }}...
           </p>
-          <el-button type="primary my-4">Xem Thêm</el-button>
-        </div>
-        <div class="item border m-2 flex flex-col p-1">
-          <img src="../assets/images/news2.jpg" alt="" />
-          <h2 class="title-item my-2">VĂN HÓA VÀ DI TÍCH</h2>
-          <p>
-            Thông tin chung - Đơn vị: Huyện ủy-HĐND-UBND huyện Thường Tín - Địa
-            chỉ: Thị trấn Thường Tín, huyện Thường Tín, TP Hà Nội - Số điện
-            thoại: (024) 3853296; Email: vanthu_thuongtin@hanoi.gov.vn - Diện
-            tích: 127,59 km2 - Dân số: khoảng 236.300 người. - Các đơn vị hành
-            chính huyện gồm 1 Thị trấn: Thường Tín và 28 xã: Chương Dương, Dũng
-            Tiến, Duyên Thái, Hà
-          </p>
-          <el-button type="primary my-4">Xem Thêm</el-button>
-        </div>
-        <div class="item border m-2 flex flex-col p-1">
-          <img src="../assets/images/news3.jpg" alt="" />
-          <h2 class="title-item my-2">Vị trí địa lý</h2>
-          <p>
-            Thông tin chung - Đơn vị: Huyện ủy-HĐND-UBND huyện Thường Tín - Địa
-            chỉ: Thị trấn Thường Tín, huyện Thường Tín, TP Hà Nội - Số điện
-            thoại: (024) 3853296; Email: vanthu_thuongtin@hanoi.gov.vn - Diện
-            tích: 127,59 km2 - Dân số: khoảng 236.300 người. - Các đơn vị hành
-            chính huyện gồm 1 Thị trấn: Thường Tín và 28 xã: Chương Dương, Dũng
-            Tiến, Duyên Thái, Hà
-          </p>
-          <el-button type="primary my-4">Xem Thêm</el-button>
+          <el-button type="primary my-4" class="cursor-pointer"  @click="gotoPost(item)">Xem Thêm</el-button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+  import { getByCategory } from '../api/post'
+
+export default {
+
+  data() {
+    return {
+      posts: [],
+    }
+  },
+  
+  mounted() {
+    getByCategory(1).then((response) => (this.posts = response.data.posts));
+  },
+  
+  methods: {
+      srcImage(item) {
+        var a =  require(`../assets/images/${item.image}`)
+        
+        return a
+      },
+      gotoPost(item) {
+        this.$router.push({
+          path: `/post/${item.id}`,
+        });
+      }
+  }
+}
+</script>
+
 <style>
 .title-general {
   font-size: 24px;
@@ -60,5 +65,8 @@
   padding-top: 5px;
   color: #212121;
   text-transform: uppercase;
+}
+.short-content {
+  min-height: 130px;
 }
 </style>
