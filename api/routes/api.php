@@ -8,7 +8,7 @@ use App\Http\Controllers\WardController;
 use App\Http\Controllers\CraftVillageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\FeedbackController;
 
 
 /*
@@ -73,3 +73,8 @@ Route::get('/post-job/{id}', [PostController::class, 'DetailPostJob']);
 Route::get('/post-expert/{id}', [PostController::class, 'DetailPostExpert']);
 Route::get('/post-ward/{id}', [PostController::class, 'DetailPostWard']);
 Route::get('/post-craft_village/{id}', [PostController::class, 'DetailPostJCraftVillage']);
+
+Route::get('/feedback', [FeedbackController::class, 'GetFeedback']);
+Route::post('/feedback', [FeedbackController::class, 'CreateFeedback']);
+Route::get('/feedback/{id}', [FeedbackController::class, 'DetailFeedback']);
+Route::delete('/feedback/{id}', [FeedbackController::class, 'DeleteFeedback']);
