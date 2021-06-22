@@ -16,6 +16,8 @@ class Post extends Model
         'craft_village_id',
         'job_id',
         'expert_id',
+        'image',
+        'category_id',
     ];
 
     public function expert()
@@ -44,8 +46,14 @@ class Post extends Model
         return $this->belongsTo('App\Models\Ward');
     }
 
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+
     public function shortContent(): String
     {
       return substr($this->content, 0, 250);
     }
+
 }

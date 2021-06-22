@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ResourcesPost;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -33,6 +35,8 @@ class PostController extends Controller
             'craft_village_id' => $request->get('craft_village_id'),
             'job_id' => $request->get('job_id'),
             'expert_id' => $request->get('expert_id'),
+            'image' => substr($request->get('image'), 12),
+            'category_id' => $request->get('category_id'),
         ]);
         $post->save();
         return response()->json([
@@ -105,5 +109,22 @@ class PostController extends Controller
         $post = Post::with('craftVillage')->where('craft_village_id', $id)->first();
 
         return new ResourcesPost($post);
+    }
+
+    public function GetPostsByCategoty($id)
+    {
+        $posts = DB::table('posts')->where('category_id', $id)->get();
+
+        return  response()->json([
+            'posts' => $posts,
+        ]);
+    }
+
+    public function GetCategoty()
+    {
+        $category = Category::get();
+        return  response()->json([
+            'categorys' => $category,
+        ]);
     }
 }
