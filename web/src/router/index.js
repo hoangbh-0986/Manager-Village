@@ -35,13 +35,6 @@ const routes = [
       import(/* webpackChunkName: "abcss" */ "../views/UsersAdmin"),
   },
   {
-    path: "/admin/detail-post",
-    name: "detail",
-    meta: { middleware: [auth, admin] },
-    component: () =>
-      import(/* webpackChunkName: "abcss" */ "../views/DetailPost"),
-  },
-  {
     path: "/admin/craft-village",
     name: "craft-village",
     meta: { middleware: [auth, admin] },
@@ -59,6 +52,12 @@ const routes = [
     name: "posts",
     meta: { middleware: [auth, admin] },
     component: () => import(/* webpackChunkName: "abcss" */ "../views/Posts"),
+  },
+  {
+    path: "/admin/feedback",
+    name: "managerFeedback",
+    meta: { middleware: [auth, admin] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/Feedback"),
   },
   {
     path: "/admin/job",

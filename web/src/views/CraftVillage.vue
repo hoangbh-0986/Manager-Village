@@ -52,7 +52,7 @@ export default {
           (response) => (this.craftVillages = response.data.craftVillage)
         );
         this.$message({
-          message: "CLàng nghề được tạo thành công",
+          message: "Làng nghề được tạo thành công",
           type: "success",
         });
       } catch (e) {
