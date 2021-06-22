@@ -73,6 +73,8 @@ Route::get('/post-job/{id}', [PostController::class, 'DetailPostJob']);
 Route::get('/post-expert/{id}', [PostController::class, 'DetailPostExpert']);
 Route::get('/post-ward/{id}', [PostController::class, 'DetailPostWard']);
 Route::get('/post-craft_village/{id}', [PostController::class, 'DetailPostJCraftVillage']);
+Route::get('/post/category/{id}', [PostController::class, 'GetPostsByCategoty']);
+Route::get('/category', [PostController::class, 'GetCategoty']);
 
 Route::get('/feedback', [FeedbackController::class, 'GetFeedback']);
 Route::post('/feedback', [FeedbackController::class, 'CreateFeedback']);
