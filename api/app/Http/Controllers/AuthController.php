@@ -14,17 +14,11 @@ class AuthController extends Controller
     }
 
     public function setRole($id) {
-        // $admin = Auth::user();
-        // if ($admin->admin_access)
-        // {
-            $user = User::find($id);
-            $user->admin_access = !$user->admin_access;
-            $user->save();
+        $user = User::find($id);
+        $user->admin_access = !$user->admin_access;
+        $user->save();
 
-            return $user;
-        // } else {
-        //     return $this->response(['message' => 'Forbidden.'], 403);
-        // }
+        return $user;
     }
 
     public function getUsers() {
