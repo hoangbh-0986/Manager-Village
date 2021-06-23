@@ -66,6 +66,8 @@ class PostController extends Controller
         $post->craft_village_id = $request->get('craft_village_id');
         $post->job_id = $request->get('job_id');
         $post->expert_id = $request->get('expert_id');
+        $post->image = substr($request->get('image'), 12);
+        $post->category_id = $request->get('category_id');
         $post->save();
 
         return $post;
