@@ -25,7 +25,8 @@
           <div
             v-for="item in jobs.slice(0, 10)"
             :key="item.id"
-            class="flex border-t-2 border-b-2 border-fuchsia-600 items-center justify-between py-3"
+            class="flex border-t-2 border-b-2 border-fuchsia-600 items-center justify-between py-3 cursor-pointer"
+            @click="gotoPost(item)"
           >
             <p class="">{{ item.name }}</p>
             <i class="el-icon-arrow-right" />
@@ -76,6 +77,14 @@ watch:{
     Banner,
     Header,
   },
+
+  methods: {
+    gotoPost(item) {
+      this.$router.push({
+        path: `/post/${item.id}`,
+      });
+    }
+  }
 };
 </script>
 <style>

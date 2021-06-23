@@ -47,12 +47,12 @@ export default {
         await create(values);
         await get().then((response) => (this.posts = response.data.data));
         this.$message({
-          message: "Expert is created!",
+          message: "Tạo bài viết thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
@@ -63,12 +63,12 @@ export default {
         await destroy(id);
         await get().then((response) => (this.posts = response.data.data));
         this.$message({
-          message: "Expert is deleted!",
+          message: "Đã xóa bài viết",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }
@@ -79,12 +79,12 @@ export default {
         await update(values.id, values);
         await get().then((response) => (this.posts = response.data.data));
         this.$message({
-          message: "Expert is updated",
+          message: "Cập nhật bài viết thành công",
           type: "success",
         });
       } catch (e) {
         this.$message({
-          message: "Something goes wrong",
+          message: "Đã có lỗi xảy ra",
           type: "error",
         });
       }

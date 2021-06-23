@@ -11,15 +11,15 @@
     />
     <BaseInput
       type="password"
-      label="Password"
+      label="Mật khẩu"
       name="password"
       v-model="password"
       class="mb-4"
     />
     <div class="flex justify-between">
-      <BaseBtn type="submit" text="Login" />
+      <BaseBtn type="submit" text="Đăng nhập" />
       <router-link to="/forgot-password" class="text-sm base-link">
-        Forgot your password?
+        Quên mật khẩu?
       </router-link>
     </div>
     <FlashMessage :error="error" />

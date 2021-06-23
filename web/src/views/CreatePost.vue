@@ -46,7 +46,7 @@
           </el-select>
         </el-form-item>
 
-        <el-form-item label="Nghệ nhân" prop="expert_id">
+        <el-form-item label="Loại bài" prop="category_id">
           <el-select
             v-model="ruleForm.category_id"
             placeholder="Vui lòng chọn loại bài viết"
