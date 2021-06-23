@@ -28,7 +28,7 @@
         />
       </el-form-item>
       <div class="flex">
-        <el-form-item label="Làng Nghề" prop="craft_village_id">
+        <el-form-item prop="craft_village_id">
           <el-select
             v-model="form.craft_village_id"
             placeholder="Vui lòng chọn 1 làng nghề"
@@ -41,13 +41,39 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Nghề" prop="job_id">
+        <el-form-item prop="job_id">
           <el-select
             v-model="form.craft_village_id"
             placeholder="Vui lòng chọn 1 nghề"
           >
             <el-option
               v-for="item in jobs"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+          <el-form-item prop="expert_id">
+          <el-select
+            v-model="form.expert_id"
+            placeholder="Vui lòng chọn Nghệ nhân"
+          >
+            <el-option
+              v-for="item in experts"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item prop="category_id">
+          <el-select
+            v-model="form.category_id"
+            placeholder="Vui lòng chọn loại bài viết"
+          >
+            <el-option
+              v-for="item in categories"
               :key="item.id"
               :label="item.name"
               :value="item.id"
@@ -69,6 +95,8 @@ import _cloneDeep from "lodash/cloneDeep";
 import VueSimplemde from "vue-simplemde";
 import { get } from "../api/craftVillage";
 import { get as getJob } from "../api/job";
+import { get as getCategory } from "../api/category";
+import { get as getExpert } from "../api/expert";
 
 const emptyState = () => ({
   title: "",
@@ -86,7 +114,9 @@ export default {
 
   mounted() {
     get().then((response) => (this.carftVillages = response.data.craftVillage));
-    getJob().then((response) => (this.jobs = response.data.data));
+    getJob().then((response) => (this.jobs = response.data.jobs));
+    getCategory().then((response) => (this.categories = response.data.categorys));
+    getExpert().then((response) => (this.experts = response.data.experts));
   },
 
   data() {

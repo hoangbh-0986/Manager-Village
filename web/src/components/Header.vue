@@ -6,7 +6,7 @@
           <HomeIcon class="w-6 h-6 text-white" />
         </router-link>
         <router-link to="/admin/craft-village" v-if="isAdmin"
-          >Admin-DashBoard</router-link
+          >Trang Quản Lý</router-link
         >
       </div>
       <router-link to="/" v-else>
@@ -58,12 +58,11 @@
             <el-menu-item index="2-1">Sản phẩm làng nghề</el-menu-item>
             <el-menu-item index="2-2">Sản Phẩm khác</el-menu-item>
           </el-submenu>
-          <el-submenu index="6">
-            <template slot="title">Hộ sản xuất</template>
-            <el-menu-item index="2-1">Hộ sản xuất nhỏ</el-menu-item>
-            <el-menu-item index="2-2">Cơ sở sản xuất lớn</el-menu-item>
-            <el-menu-item index="2-3">Hợp tác xã</el-menu-item>
-          </el-submenu>
+          <router-link to="/news">
+            <el-submenu index="6">
+              <template slot="title">Tin Tức</template>
+            </el-submenu>
+          </router-link>
           <router-link to="/contact">
             <el-submenu index="7">
               <template slot="title">Liên Hệ</template>
@@ -80,7 +79,7 @@
         to="/login"
         class="inline-flex items-center space-x-2"
       >
-        <span>Login</span>
+        <span>Đăng nhập</span>
         <LoginIcon class="w-6 h-6 text-white" />
       </router-link>
     </nav>

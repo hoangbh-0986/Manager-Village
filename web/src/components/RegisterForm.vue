@@ -2,7 +2,7 @@
   <form @submit.prevent="registerUser">
     <BaseInput
       type="text"
-      label="Name"
+      label="Tên"
       name="name"
       v-model="name"
       placeholder="Luke Skywalker"
@@ -18,19 +18,19 @@
     />
     <BaseInput
       type="password"
-      label="Password"
+      label="Mật khẩu"
       name="password"
       v-model="password"
       class="mb-2"
     />
     <BaseInput
       type="password"
-      label="Confirm Password"
+      label="Xác nhận mật khẩu"
       name="password-confirm"
       v-model="passwordConfirm"
       class="mb-4"
     />
-    <BaseBtn type="submit" text="Register" />
+    <BaseBtn type="submit" text="Đăng ký" />
     <FlashMessage :error="error" />
   </form>
 </template>
