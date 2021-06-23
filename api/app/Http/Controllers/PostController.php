@@ -84,17 +84,21 @@ class PostController extends Controller
 
     public function DetailPostJob($id)
     {
-        $post = Post::with('author')->where('job_id', $id)->first();
+        $post = Post::with('job')->where('job_id', $id)->get();
 
-        return new ResourcesPost($post);
+        return  response()->json([
+            'posts' => $post,
+        ]);
     }
 
 
     public function DetailPostExpert($id)
     {
-        $post = Post::with('expert')->where('expert_id', $id)->first();
+        $post = Post::with('expert')->where('expert_id', $id)->get();
 
-        return new ResourcesPost($post);
+        return  response()->json([
+            'posts' => $post,
+        ]);
     }
 
 
@@ -108,9 +112,11 @@ class PostController extends Controller
 
     public function DetailPostJCraftVillage($id)
     {
-        $post = Post::with('craftVillage')->where('craft_village_id', $id)->first();
+        $post = Post::with('craftVillage')->where('craft_village_id', $id)->get();
 
-        return new ResourcesPost($post);
+        return  response()->json([
+            'posts' => $post,
+        ]);
     }
 
     public function GetPostsByCategoty($id)
