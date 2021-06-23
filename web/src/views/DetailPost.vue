@@ -3,7 +3,7 @@
     <Banner />
     <Header />
     <SlideShow />
-    <div class="flex justify-center">
+    <div class="flex justify-center flex-col">
       <div class="h-full flex justify-between my-10 w-11/12">
         <div class="ml-1 body-post w-3/4 mr-5">
           <div
@@ -33,13 +33,29 @@
           </div>
         </div>
       </div>
+      <div class="mb-5">
+        <p @click="getRelatedPost(post)" class="more" >Xem Thêm các bài viết liên quan</p>
+        <p
+          v-for="item in relatedPost.slice(0, 10)"
+          :key="item.id"
+          @click="gotoPost(item)"
+          class="ddfdsf"
+        > 
+          <a
+            v-if="post.id !== item.id"
+          >
+            {{item.title}}
+          </a>
+          <a v-if="relatedPost.length <= 1"> không có bài viết liên quan nào! </a>
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { get as getJob } from "../api/job";
-import { getDetail as getPost } from "../api/post";
+import { getDetail as getPost, DetailPostJCraftVillage, DetailPostJob, DetailPostExpert, getByCategory } from "../api/post";
 import SlideShow from "@/components/SlideShowContact.vue";
 import Banner from "@/components/Banner.vue";
 import Header from "@/components/Header.vue";
@@ -50,6 +66,7 @@ export default {
       dialogFormVisible: false,
       jobs: [],
       post: null,
+      relatedPost: [],
     };
   },
 
@@ -64,6 +81,7 @@ export default {
 watch:{
     $route (value){
       try{
+        this.relatedPost = [],
         getPost(value.params.post_id).then((response) => (this.post = response.data.data));
       } catch (err) {
         console.log(err);
@@ -83,6 +101,23 @@ watch:{
       this.$router.push({
         path: `/post/${item.id}`,
       });
+    },
+    async getRelatedPost(post) {
+      try{
+        if(post.craft_village_id !== null) {
+          DetailPostJCraftVillage(post.craft_village_id).then((response) => (this.relatedPost = response.data.posts));
+        } else if (post.job_id !== null ) {
+          DetailPostJob(post.job_id).then((response) => (this.relatedPost = response.data.posts));
+        } else if (post.category_id !== null) {
+          getByCategory(post.category_id).then((response) => (this.relatedPost = response.data.posts));
+        } else if (post.expert_id !== null) {
+          DetailPostExpert(post.expert_id).then((response) => (this.relatedPost = response.data.posts));
+        } else {
+          return this.relatedPost = [];
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 };
@@ -146,5 +181,16 @@ h6 {
   color: #2f3c44;
   text-shadow: 1px 1px #cccccc;
   text-transform: uppercase;
+}
+.more {
+  color: #2e8afe;
+  font-weight: 600;
+  cursor: pointer;
+}
+.ddfdsf {
+  padding: 15px;
+  border-bottom: 1px solid gray;
+  max-width: 1000px;
+  cursor: pointer;
 }
 </style>
