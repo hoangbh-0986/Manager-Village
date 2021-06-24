@@ -36,7 +36,7 @@ export default {
     get().then(
       (response) => (
         (this.posts = response.data.data),
-        (this.total = response.data.data.lenght)
+        (this.total = response.data.data.length)
       )
     );
   },
@@ -45,7 +45,7 @@ export default {
     async create(values) {
       try {
         await create(values);
-        await get().then((response) => (this.posts = response.data.data));
+        await get().then((response) => ((this.posts = response.data.data), (this.total = response.data.data.length)));
         this.$message({
           message: "Tạo bài viết thành công",
           type: "success",

@@ -43,6 +43,13 @@
       <div>Người dùng</div>
     </router-link>
     <router-link
+      to="/admin/product"
+      class="aside-btn"
+      :class="$route.name === 'product' ? 'active' : ''"
+    >
+      <div>Sản phẩm</div>
+    </router-link>
+    <router-link
       to="/admin/feedback"
       class="aside-btn"
       :class="$route.name === 'managerFeedback' ? 'active' : ''"

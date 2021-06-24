@@ -27,7 +27,7 @@
           <div
             class="flex my-3 cursor-pointer"
             @click="gotoPost(item)"
-            v-for="item in posts.slice(1, 4)"
+            v-for="item in posts.slice(1, 5)"
             :key="item.id"
             :index="item.id"
           >

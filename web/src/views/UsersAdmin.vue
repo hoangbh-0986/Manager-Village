@@ -28,7 +28,7 @@ export default {
     get().then(
       (response) => (
         (this.users = response.data.data),
-        (this.total = response.data.data.lenght)
+        (this.total = response.data.data.length)
       )
     );
   },

@@ -1,7 +1,7 @@
 <template>
   <el-pagination
     layout="prev, pager, next"
-    :page-size="5"
+    :page-size="15"
     :total="total"
     class="text-center mt-1"
     background
