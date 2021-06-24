@@ -9,7 +9,7 @@ use App\Http\Controllers\CraftVillageController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FeedbackController;
-
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ Route::get('/post/{id}', [PostController::class, 'DetailPost']);
 Route::put('/post/{id}', [PostController::class, 'UpdatePost']);
 Route::delete('/post/{id}', [PostController::class, 'DeletePost']);
 Route::get('/post-job/{id}', [PostController::class, 'DetailPostJob']);
-Route::get('/post-expert/{id}', [PostController::class, 'DetailPostExpert']);
+Route::get('/post-expert', [PostController::class, 'DetailPostExpert']);
 Route::get('/post-ward/{id}', [PostController::class, 'DetailPostWard']);
 Route::get('/post-craft_village/{id}', [PostController::class, 'DetailPostJCraftVillage']);
 Route::get('/post/category/{id}', [PostController::class, 'GetPostsByCategoty']);
@@ -80,3 +80,10 @@ Route::get('/feedback', [FeedbackController::class, 'GetFeedback']);
 Route::post('/feedback', [FeedbackController::class, 'CreateFeedback']);
 Route::get('/feedback/{id}', [FeedbackController::class, 'DetailFeedback']);
 Route::delete('/feedback/{id}', [FeedbackController::class, 'DeleteFeedback']);
+
+
+Route::get('/product', [ProductController::class, 'GetProduct']);
+Route::post('/product', [ProductController::class, 'CreateProduct']);
+Route::get('/product/{id}', [ProductController::class, 'DetailProduct']);
+Route::put('/product/{id}', [ProductController::class, 'UpdateProduct']);
+Route::delete('/product/{id}', [ProductController::class, 'DeleteProduct']);

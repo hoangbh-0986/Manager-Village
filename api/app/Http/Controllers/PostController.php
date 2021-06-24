@@ -17,7 +17,8 @@ class PostController extends Controller
 
         $post = Post::with('author')->get();
 
-        return ResourcesPost::collection($post);
+        return
+            ResourcesPost::collection($post) ;
         // return $post;
     }
 
@@ -66,7 +67,6 @@ class PostController extends Controller
         $post->craft_village_id = $request->get('craft_village_id');
         $post->job_id = $request->get('job_id');
         $post->expert_id = $request->get('expert_id');
-        $post->image = substr($request->get('image'), 12);
         $post->category_id = $request->get('category_id');
         $post->save();
 
@@ -92,9 +92,9 @@ class PostController extends Controller
     }
 
 
-    public function DetailPostExpert($id)
+    public function DetailPostExpert()
     {
-        $post = Post::with('expert')->where('expert_id', $id)->get();
+        $post = Post::with('expert')->whereNotNull('expert_id')->get();
 
         return  response()->json([
             'posts' => $post,
