@@ -46,4 +46,9 @@ class CraftVillage extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
+
+    public function products()
+    {
+        return $this->hasMany('App\Models\Product');
+    }
 }

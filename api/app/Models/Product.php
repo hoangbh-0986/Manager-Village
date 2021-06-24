@@ -9,13 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function manufactureFactory()
-    {
-        return $this->belongsTo('App\Models\ManufactureFactory');
-    }
+    protected $fillable = [
+        'name',
+        'craft_village_id',
+        'image',
+    ];
 
-    public function job()
+    public function craftVillages()
     {
-        return $this->belongsTo('App\Models\Job');
+        return $this->belongsTo('App\Models\CraftVillage', 'craft_village_id');
     }
 }

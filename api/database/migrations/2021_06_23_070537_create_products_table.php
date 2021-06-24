@@ -15,11 +15,9 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->integer('job_id')->unsigned()->index();
-            $table->integer('manufacture_factories_id')->unsigned()->index();
             $table->string('name');
-            $table->integer('amount');
-            $table->integer('price');
+            $table->string('image')->nullable();
+            $table->integer('craft_village_id')->nullable()->unsigned()->index();
             $table->timestamps();
         });
     }

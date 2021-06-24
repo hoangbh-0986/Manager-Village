@@ -26,11 +26,6 @@ class Job extends Model
         return $this->belongsToMany('App\Models\CraftVillage');
     }
 
-    public function products()
-    {
-        return $this->hasMAny('App\Models\Product');
-    }
-
     public function expert()
     {
         return $this->hasMAny('App\Models\Expert');
