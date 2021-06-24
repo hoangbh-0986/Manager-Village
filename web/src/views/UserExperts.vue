@@ -9,12 +9,12 @@
           <div
             class="flex border-b-2 border-fuchsia-600 items-center justify-between mr-5 mb-5"
           >
-            Trang chủ > Tin Tức
+            Trang chủ > Nghệ nhân
           </div>
           <div 
             class="flex p-8 border-b cursor-pointer"
             @click="gotoPost(item)"
-            v-for="item in posts.slice(1, 5)"
+            v-for="item in posts.slice(0, 6)"
             :key="item.id"
             :index="item.id"
           >
@@ -53,7 +53,7 @@
 
 <script>
 import { get as getJob } from "../api/job";
-import { getByCategory } from '../api/post'
+import { DetailPostExpert } from '../api/post'
 import SlideShow from "@/components/SlideShowContact.vue";
 import Banner from "@/components/Banner.vue";
 import Header from "@/components/Header.vue";
@@ -68,7 +68,7 @@ export default {
 
   mounted() {
     getJob().then((response) => (this.jobs = response.data.jobs));
-    getByCategory(2).then((response) => (this.posts = response.data.posts));
+    DetailPostExpert().then((response) => (this.posts = response.data.posts));
   },
 
   components: {

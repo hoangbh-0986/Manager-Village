@@ -5,9 +5,9 @@
         <router-link to="/">
           <HomeIcon class="w-6 h-6 text-white" />
         </router-link>
-        <router-link to="/admin/craft-village" v-if="isAdmin"
-          >Trang Quản Lý</router-link
-        >
+        <router-link to="/admin/craft-village" target="_blank" v-if="isAdmin">
+          Trang Quản Lý
+        </router-link>
       </div>
       <router-link to="/" v-else>
         <HomeIcon class="w-6 h-6 text-white" />
@@ -42,22 +42,16 @@
               {{ item.name }}
             </el-menu-item>
           </el-submenu>
-          <el-submenu index="4">
-            <template slot="title">Nghệ Nhân</template>
-            <el-menu-item
-              v-for="item in experts.slice(0, 5)"
-              :key="item.id"
-              :index="item.id"
-              @click="detailExpert(item)"
-            >
-              {{ item.name }}
-            </el-menu-item>
-          </el-submenu>
-          <el-submenu index="5">
-            <template slot="title">Sản phẩm</template>
-            <el-menu-item index="2-1">Sản phẩm làng nghề</el-menu-item>
-            <el-menu-item index="2-2">Sản Phẩm khác</el-menu-item>
-          </el-submenu>
+          <router-link to="/experts">
+            <el-submenu index="4">
+              <template slot="title">Nghệ Nhân</template>
+            </el-submenu>
+          </router-link>
+          <router-link to="/products">
+            <el-submenu index="5">
+              <template slot="title">Sản phẩm</template>
+            </el-submenu>
+          </router-link>
           <router-link to="/news">
             <el-submenu index="6">
               <template slot="title">Tin Tức</template>
@@ -89,7 +83,6 @@
 <script>
 import { get } from "../api/craftVillage";
 import { get as getJob } from "../api/job";
-import { get as getExpert } from "../api/expert";
 import { mapGetters } from "vuex";
 import Logout from "@/components/Logout";
 import HomeIcon from "@/components/icons/HomeIcon";
@@ -103,14 +96,12 @@ export default {
       activeIndex2: "1",
       carftVillages: [],
       jobs: [],
-      experts: [],
     };
   },
 
   mounted() {
     get().then((response) => (this.carftVillages = response.data.craftVillage));
     getJob().then((response) => (this.jobs = response.data.jobs));
-    getExpert().then((response) => (this.experts = response.data.experts));
   },
 
   components: {

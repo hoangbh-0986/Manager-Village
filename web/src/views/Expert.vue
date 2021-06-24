@@ -47,7 +47,7 @@ export default {
     async create(values) {
       try {
         await create(values);
-        await get().then((response) => (this.experts = response.data.data));
+        await get().then((response) => (this.experts = response.data.experts));
         this.$message({
           message: "Đã thêm thành công nghệ nhân",
           type: "success",
@@ -65,8 +65,8 @@ export default {
         await destroy(id);
         await get().then(
           (response) => (
-            (this.experts = response.data.data),
-            (this.total = response.data.total)
+            (this.experts = response.data.experts),
+            (this.total = response.data.experts.length)
           )
         );
         this.$message({
@@ -84,7 +84,7 @@ export default {
     async onEdit(values) {
       try {
         await update(values.id, values);
-        await get().then((response) => (this.experts = response.data.data));
+        await get().then((response) => (this.experts = response.data.experts));
         this.$message({
           message: "Cập nhật thành công",
           type: "success",

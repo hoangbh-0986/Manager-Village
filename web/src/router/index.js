@@ -22,6 +22,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ "../views/DetailPost"),
   },
   {
+    path: "/product/:product_id",
+    name: "detailProduct",
+    // meta: { middleware: [guest] },
+    component: () => import(/* webpackChunkName: "home" */ "../views/DetailProduct"),
+  },
+  {
     path: "/admin/ward",
     name: "ward",
     meta: { middleware: [auth, admin] },
@@ -66,10 +72,26 @@ const routes = [
     component: () => import(/* webpackChunkName: "abcss" */ "../views/Job"),
   },
   {
+    path: "/admin/product",
+    name: "product",
+    meta: { middleware: [auth, admin] },
+    component: () => import(/* webpackChunkName: "abcss" */ "../views/Product"),
+  },
+  {
     path: "/user",
     name: "user",
     meta: { middleware: [auth] },
     component: () => import(/* webpackChunkName: "user" */ "../views/User"),
+  },
+  {
+    path: "/experts",
+    name: "expertsUser",
+    component: () => import(/* webpackChunkName: "user" */ "../views/UserExperts"),
+  },
+  {
+    path: "/products",
+    name: "productsUser",
+    component: () => import(/* webpackChunkName: "user" */ "../views/UserProducts"),
   },
   {
     path: "/user",

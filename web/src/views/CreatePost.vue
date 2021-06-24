@@ -60,6 +60,20 @@
           </el-select>
         </el-form-item>
 
+        <el-form-item label="Nghệ Nhân" prop="expert_id">
+          <el-select
+            v-model="ruleForm.expert_id"
+            placeholder="Vui lòng chọn nghệ nhân"
+          >
+            <el-option
+              v-for="item in experts"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="Hình ảnh" prop="image">
           <el-input type="file" v-model="ruleForm.image" class="form-control-file h-full" @change="onFileChange"></el-input>
         </el-form-item>
@@ -79,6 +93,7 @@ import { get, create } from "../api/post";
 import { get as getCraftVillage } from "../api/craftVillage";
 import { get as getCategory } from "../api/category";
 import { get as getJob } from "../api/job";
+import { get as getExpert } from "../api/expert";
 export default {
   components: {
     VueSimplemde,
@@ -89,6 +104,7 @@ export default {
       craftVillages: [],
       wards: [],
       jobs: [],
+      experts: [],
       ruleForm: {
         title: "",
         content: "",
@@ -110,6 +126,7 @@ export default {
     );
     getCategory().then((response) => (this.categories = response.data.categorys));
     getJob().then((response) => (this.jobs = response.data.jobs));
+    getExpert().then((response) => (this.experts = response.data.experts));
   },
 
   methods: {
@@ -123,7 +140,7 @@ export default {
               message: "Tạo bài viết thành công",
               type: "success",
             });
-            window.location.href = "http://app.local/admin/posts";
+            // window.location.href = "http://app.local/admin/posts";
           } catch (e) {
             this.$message({
               message: "Đã có lỗi xảy ra",

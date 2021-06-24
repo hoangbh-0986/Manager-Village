@@ -125,6 +125,7 @@ export default {
       show: false,
       carftVillages: [],
       jobs: [],
+      categories: [],
       rules: {
         title: [
           { required: true, message: "Tiêu đề  là bắt buộc", trigger: "blur" },
